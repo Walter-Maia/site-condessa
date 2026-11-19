@@ -10,11 +10,10 @@
   <meta name="robots" content="noindex, nofollow">
   <!-- Liga os efeitos de rolagem só com movimento permitido; ?fx=0 força o modo estático. -->
   <script>(function(){var d=document.documentElement;try{if(new URLSearchParams(location.search).get("fx")==="0"||matchMedia("(prefers-reduced-motion: reduce)").matches){d.classList.add("no-fx");return}d.classList.add("fx")}catch(e){}})();</script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Jost:wght@300..600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/base.css?v=5">
-  <link rel="stylesheet" href="assets/css/studio.css?v=5">
+  <link rel="preload" href="assets/fonts/italiana-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/alegreya-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/base.css?v=7">
+  <link rel="stylesheet" href="assets/css/studio.css?v=7">
 </head>
 <body class="studio">
   <a class="pular" href="#salas">Pular para os procedimentos</a>
@@ -70,28 +69,17 @@
     <!-- ============ Entrada: role para atravessar a porta ============ -->
     <section class="entrada" id="entrada" aria-label="Entrada do Studio">
       <div class="entrada__palco">
-        <picture class="entrada__cam entrada__cam--recepcao" data-foco-x="0.525" data-foco-y="0.53" data-foco-xv="0.5" data-foco-yv="0.475">
-          <source media="(orientation: portrait)" srcset="assets/img/cena-recepcao-v.jpg">
-          <img src="assets/img/cena-recepcao.jpg" alt="Recepção do studio: balcão curvo, parede de mármore e um corredor com portas em arco." width="2688" height="1520">
-        </picture>
-        <picture class="entrada__cam entrada__cam--fachada" data-foco-x="0.5" data-foco-y="0.575" data-foco-xv="0.5" data-foco-yv="0.65">
-          <source media="(orientation: portrait)" srcset="assets/img/cena-fachada-v.jpg">
-          <img src="assets/img/cena-fachada.jpg" alt="Fachada creme do Studio Condessa Beauty com porta em arco aberta e duas oliveiras." width="2688" height="1520" fetchpriority="high">
+        <picture class="entrada__cam" data-foco-x="0.5" data-foco-y="0.575" data-foco-xv="0.5" data-foco-yv="0.65">
+          <source media="(orientation: portrait)" srcset="assets/img/cena-fachada-v.webp">
+          <img src="assets/img/cena-fachada.webp" alt="Fachada creme do Studio Condessa Beauty com porta em arco aberta e duas oliveiras." width="2400" height="1357" fetchpriority="high">
         </picture>
         <div class="entrada__veu" aria-hidden="true"></div>
         <div class="entrada__sombra" aria-hidden="true"></div>
 
-        <div class="entrada__txt entrada__txt--1">
+        <div class="entrada__txt">
           <p class="sobre">Studio Condessa Beauty · Ipatinga</p>
           <h1 class="titulo">A porta está aberta. <em>Entre.</em></h1>
           <p class="entrada__lead">Role a página para atravessar a entrada e conhecer o salão, sala por sala.</p>
-        </div>
-
-        <div class="entrada__txt entrada__txt--2">
-          <div class="sala__placa">
-            <p class="sobre">Recepção</p>
-            <p class="titulo entrada__frase">Beleza com naturalidade, <em>liberdade e segurança.</em></p>
-          </div>
         </div>
 
         <div class="entrada__role" aria-hidden="true"><span></span>Role para entrar</div>
@@ -122,7 +110,7 @@
     <!-- ============ Sala 01 · Cabelo ============ -->
     <section class="sala" id="sala-cabelo" data-sala="Cabelo">
       <div class="sala__fundo" aria-hidden="true">
-        <img src="assets/img/cena-cabelo.jpg" alt="" width="2688" height="1520" loading="lazy">
+        <img src="assets/img/cena-cabelo.webp" alt="" width="1920" height="1086" loading="lazy" decoding="async">
         <span class="sala__veu"></span>
       </div>
       <div class="sala__conteudo">
@@ -135,7 +123,7 @@
         </header>
         <div class="cartoes">
           <article class="cartao" id="mega-hair" data-revelar>
-            <div class="cartao__img"><img src="assets/img/proc-megahair.jpg" alt="Cabelo castanho longo e ondulado visto de costas." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__img"><img src="assets/img/proc-megahair.webp" alt="Cabelo castanho longo e ondulado visto de costas." width="720" height="900" loading="lazy" decoding="async"></div>
             <div class="cartao__txt">
               <h3 class="titulo">Mega Hair</h3>
               <p>Tudo começa na escolha dos fios. Depois vêm o movimento, a leveza e um acabamento tão natural que você esquece que está usando.</p>
@@ -143,7 +131,7 @@
             </div>
           </article>
           <article class="cartao" id="realinhamento" data-revelar style="--atraso:.08s">
-            <div class="cartao__img"><img src="assets/img/proc-realinhamento.jpg" alt="Cabelo escuro longo, liso e brilhante sendo penteado." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__img"><img src="assets/img/proc-realinhamento.webp" alt="Cabelo escuro longo, liso e brilhante sendo penteado." width="720" height="900" loading="lazy" decoding="async"></div>
             <div class="cartao__txt">
               <h3 class="titulo">Realinhamento</h3>
               <p>Fios alinhados, com brilho e menos frizz no dia a dia. A indicação é feita em avaliação, de acordo com o histórico do seu cabelo.</p>
@@ -151,7 +139,7 @@
             </div>
           </article>
           <article class="cartao" id="corte-mechas" data-revelar style="--atraso:.16s">
-            <div class="cartao__img"><img src="assets/img/proc-corte-mechas.jpg" alt="Corte em camadas com mechas mel sendo finalizado com tesoura e pente." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__img"><img src="assets/img/proc-corte-mechas.webp" alt="Corte em camadas com mechas mel sendo finalizado com tesoura e pente." width="720" height="900" loading="lazy" decoding="async"></div>
             <div class="cartao__txt">
               <h3 class="titulo">Corte &amp; Mechas</h3>
               <p>O corte Tamires Condessa, em camadas, traz movimento, leveza e um caimento que valoriza o rosto. É o mais pedido da casa. As mechas iluminam sem pesar.</p>
@@ -165,7 +153,7 @@
     <!-- ============ Sala 02 · Olhar ============ -->
     <section class="sala" id="sala-olhar" data-sala="Olhar">
       <div class="sala__fundo" aria-hidden="true">
-        <img src="assets/img/cena-olhar.jpg" alt="" width="2688" height="1520" loading="lazy">
+        <img src="assets/img/cena-olhar.webp" alt="" width="1920" height="1086" loading="lazy" decoding="async">
         <span class="sala__veu"></span>
       </div>
       <div class="sala__conteudo">
@@ -178,7 +166,7 @@
         </header>
         <div class="cartoes cartoes--quatro">
           <article class="cartao" id="sobrancelhas" data-revelar>
-            <div class="cartao__img"><img src="assets/img/proc-sobrancelhas.jpg" alt="Close de um olho castanho com sobrancelha natural bem desenhada." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__img"><img src="assets/img/proc-sobrancelhas.webp" alt="Close de um olho castanho com sobrancelha natural bem desenhada." width="720" height="900" loading="lazy" decoding="async"></div>
             <div class="cartao__txt">
               <h3 class="titulo">Sobrancelhas</h3>
               <p>Design que organiza o desenho e valoriza o olhar, respeitando a estrutura natural da sua sobrancelha.</p>
@@ -186,7 +174,7 @@
             </div>
           </article>
           <article class="cartao" id="nanofios" data-revelar style="--atraso:.08s">
-            <div class="cartao__img"><img src="assets/img/proc-nanofios.jpg" alt="Profissional desenhando fios finos em uma sobrancelha." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__img"><img src="assets/img/proc-nanofios.webp" alt="Profissional desenhando fios finos em uma sobrancelha." width="720" height="900" loading="lazy" decoding="async"></div>
             <div class="cartao__txt">
               <h3 class="titulo">Nanofios</h3>
               <p>Nossa técnica exclusiva preenche fio a fio, com naturalidade e precisão, cobrindo falhas pontuais em harmonia com o rosto.</p>
@@ -194,7 +182,7 @@
             </div>
           </article>
           <article class="cartao" id="full-brows" data-revelar style="--atraso:.16s">
-            <div class="cartao__img"><img src="assets/img/proc-full-brows.jpg" alt="Sobrancelhas cheias com os fios alinhados para cima." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__img"><img src="assets/img/proc-full-brows.webp" alt="Sobrancelhas cheias com os fios alinhados para cima." width="720" height="900" loading="lazy" decoding="async"></div>
             <div class="cartao__txt">
               <h3 class="titulo">Full Brows</h3>
               <p>Fios alinhados, maleáveis e direcionados para preencher falhas e dar volume, sem perder a naturalidade.</p>
@@ -202,7 +190,7 @@
             </div>
           </article>
           <article class="cartao" id="lash-lifting" data-revelar style="--atraso:.24s">
-            <div class="cartao__img"><img src="assets/img/proc-lash-lifting.jpg" alt="Cílios naturais curvados e levantados." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__img"><img src="assets/img/proc-lash-lifting.webp" alt="Cílios naturais curvados e levantados." width="720" height="900" loading="lazy" decoding="async"></div>
             <div class="cartao__txt">
               <h3 class="titulo">Lash Lifting</h3>
               <p>Curvatura e levantamento dos seus próprios cílios, para um olhar aberto mesmo sem máscara.</p>
@@ -216,7 +204,7 @@
     <!-- ============ Sala 03 · Rosto & Lábios ============ -->
     <section class="sala" id="sala-rosto" data-sala="Rosto &amp; Lábios">
       <div class="sala__fundo" aria-hidden="true">
-        <img src="assets/img/cena-face.jpg" alt="" width="2688" height="1520" loading="lazy">
+        <img src="assets/img/cena-face.webp" alt="" width="1920" height="1086" loading="lazy" decoding="async">
         <span class="sala__veu"></span>
       </div>
       <div class="sala__conteudo">
@@ -229,7 +217,7 @@
         </header>
         <div class="cartoes">
           <article class="cartao" id="labios" data-revelar>
-            <div class="cartao__img"><img src="assets/img/proc-labios.jpg" alt="Close de lábios com cor natural e contorno suave." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__img"><img src="assets/img/proc-labios.webp" alt="Close de lábios com cor natural e contorno suave." width="720" height="900" loading="lazy" decoding="async"></div>
             <div class="cartao__txt">
               <h3 class="titulo">Lábios</h3>
               <p>Cor e contorno realçados com acabamento natural. O tom é escolhido com você, na avaliação.</p>
@@ -237,7 +225,7 @@
             </div>
           </article>
           <article class="cartao" id="face-beauty" data-revelar style="--atraso:.08s">
-            <div class="cartao__img"><img src="assets/img/proc-face-beauty.jpg" alt="Cliente de olhos fechados recebendo um cuidado facial." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__img"><img src="assets/img/proc-face-beauty.webp" alt="Cliente de olhos fechados recebendo um cuidado facial." width="720" height="900" loading="lazy" decoding="async"></div>
             <div class="cartao__txt">
               <h3 class="titulo">Face Beauty</h3>
               <p>Cuidados para o rosto em um momento só seu, com atenção ao que a sua pele pede.</p>
@@ -245,7 +233,7 @@
             </div>
           </article>
           <article class="cartao" id="producoes" data-revelar style="--atraso:.16s">
-            <div class="cartao__img"><img src="assets/img/proc-noivas.jpg" alt="Noiva de costas, com ondas polidas no cabelo, diante de uma cortina clara." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__img"><img src="assets/img/proc-noivas.webp" alt="Noiva de costas, com ondas polidas no cabelo, diante de uma cortina clara." width="720" height="900" loading="lazy" decoding="async"></div>
             <div class="cartao__txt">
               <h3 class="titulo">Produções &amp; Noivas</h3>
               <p>Make e penteado para o seu evento. Para noivas, também fazemos a troca de penteado no local, depois da cerimônia.</p>
@@ -259,7 +247,7 @@
     <!-- ============ Sala 04 · Nails ============ -->
     <section class="sala" id="sala-nails" data-sala="Nails">
       <div class="sala__fundo" aria-hidden="true">
-        <img src="assets/img/cena-nails.jpg" alt="" width="2688" height="1520" loading="lazy">
+        <img src="assets/img/cena-nails.webp" alt="" width="1920" height="1086" loading="lazy" decoding="async">
         <span class="sala__veu"></span>
       </div>
       <div class="sala__conteudo">
@@ -272,7 +260,7 @@
         </header>
         <div class="cartoes cartoes--um">
           <article class="cartao cartao--largo" id="nails" data-revelar>
-            <div class="cartao__img"><img src="assets/img/proc-nails.jpg" alt="Mãos com unhas amendoadas em tom nude leitoso." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__img"><img src="assets/img/proc-nails.webp" alt="Mãos com unhas amendoadas em tom nude leitoso." width="720" height="900" loading="lazy" decoding="async"></div>
             <div class="cartao__txt">
               <h3 class="titulo">Nails (unhas)</h3>
               <p>Cuidado e acabamento caprichado, do formato à cor. Conte no agendamento o que você tem em mente e a gente reserva o tempo certo para você.</p>
@@ -286,7 +274,7 @@
     <!-- ============ Sala 05 · Bem-estar ============ -->
     <section class="sala" id="sala-bem-estar" data-sala="Bem-estar">
       <div class="sala__fundo" aria-hidden="true">
-        <img src="assets/img/cena-bemestar.jpg" alt="" width="2688" height="1520" loading="lazy">
+        <img src="assets/img/cena-bemestar.webp" alt="" width="1920" height="1086" loading="lazy" decoding="async">
         <span class="sala__veu"></span>
       </div>
       <div class="sala__conteudo">
@@ -299,7 +287,7 @@
         </header>
         <div class="cartoes cartoes--um">
           <article class="cartao cartao--largo" id="cone-chines" data-revelar>
-            <div class="cartao__img"><img src="assets/img/proc-cone-chines.jpg" alt="Cones de cera natural sobre uma bandeja de madeira, com toalha e eucalipto." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__img"><img src="assets/img/proc-cone-chines.webp" alt="Cones de cera natural sobre uma bandeja de madeira, com toalha e eucalipto." width="720" height="900" loading="lazy" decoding="async"></div>
             <div class="cartao__txt">
               <h3 class="titulo">Cone Chinês</h3>
               <p>Um ritual de relaxamento feito com cones, em ambiente tranquilo e com acompanhamento do início ao fim. Fale com a gente para saber como funciona a sessão.</p>
@@ -313,7 +301,7 @@
     <!-- ============ Sala 06 · Cursos ============ -->
     <section class="sala sala--cursos" id="sala-cursos" data-sala="Cursos">
       <div class="sala__fundo" aria-hidden="true">
-        <img src="assets/img/cena-cursos.jpg" alt="" width="2688" height="1520" loading="lazy">
+        <img src="assets/img/cena-cursos.webp" alt="" width="1920" height="1086" loading="lazy" decoding="async">
         <span class="sala__veu"></span>
       </div>
       <div class="sala__conteudo">
@@ -326,7 +314,7 @@
         </header>
         <div class="cartoes cartoes--um">
           <article class="cartao cartao--largo" id="cursos" data-revelar>
-            <div class="cartao__img"><img src="assets/img/proc-curso.jpg" alt="Aula prática de maquiagem: instrutora aplicando blush em uma modelo." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__img"><img src="assets/img/proc-curso.webp" alt="Aula prática de maquiagem: instrutora aplicando blush em uma modelo." width="720" height="900" loading="lazy" decoding="async"></div>
             <div class="cartao__txt">
               <h3 class="titulo">Curso profissional de maquiagem</h3>
               <p>Formação dentro do Studio, com a mão na massa desde o primeiro dia.</p>
@@ -405,7 +393,7 @@
     <p class="rodape__fim">Condessa Beauty · Ipatinga, MG. Imagens ilustrativas.</p>
   </footer>
 
-  <script src="assets/js/transicao.js?v=5" defer></script>
-  <script src="assets/js/studio.js?v=5" defer></script>
+  <script src="assets/js/transicao.js?v=7" defer></script>
+  <script src="assets/js/studio.js?v=7" defer></script>
 </body>
 </html>

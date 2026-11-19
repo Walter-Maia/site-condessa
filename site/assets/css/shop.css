@@ -16,8 +16,8 @@ body.shop {
   border-radius: 999px;
   background: var(--cafe);
   color: var(--marfim);
-  font-size: 0.66rem;
-  font-weight: 600;
+  font-size: 0.7rem;
+  font-weight: 500;
   line-height: 1;
 }
 
@@ -146,9 +146,8 @@ body.shop {
   align-items: center;
   gap: clamp(1.4rem, 3vw, 2.6rem);
   padding: 1.05rem 0 1.05rem clamp(1.4rem, 3vw, 2.6rem);
-  font-family: var(--serif);
-  font-size: clamp(1.1rem, 0.95rem + 0.6vw, 1.5rem);
-  font-style: italic;
+  font-family: var(--serif-texto);
+  font-size: clamp(1.15rem, 1rem + 0.6vw, 1.55rem);
   color: var(--moca);
   white-space: nowrap;
 }
@@ -223,15 +222,7 @@ html.no-fx .marcas__lista[aria-hidden="true"] {
   gap: 0.7rem;
   margin: clamp(1.4rem, 3vw, 2.2rem) calc(var(--gut) * -1) 0;
   padding: 0.8rem var(--gut);
-  background: rgba(247, 241, 232, 0.96);
-}
-
-@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .filtros {
-    background: rgba(247, 241, 232, 0.8);
-    -webkit-backdrop-filter: blur(14px);
-    backdrop-filter: blur(14px);
-  }
+  background: rgba(247, 241, 232, 0.98);
 }
 
 .filtros__chips {
@@ -461,8 +452,8 @@ html.no-fx .marcas__lista[aria-hidden="true"] {
 }
 
 .produto__nome {
-  font-family: var(--serif);
-  font-size: clamp(1.02rem, 0.9rem + 0.55vw, 1.3rem);
+  font-family: var(--serif-texto);
+  font-size: clamp(1.1rem, 0.96rem + 0.6vw, 1.4rem);
   font-weight: 400;
   line-height: 1.2;
   text-wrap: balance;
@@ -549,14 +540,14 @@ html.no-fx .marcas__lista[aria-hidden="true"] {
 
 .como__passos li::before {
   content: "0" counter(passo);
-  font-family: var(--serif);
+  font-family: var(--serif-texto);
   font-size: 2.2rem;
   line-height: 1;
   color: var(--ouro);
 }
 
 .como__passos b {
-  font-family: var(--serif);
+  font-family: var(--serif-texto);
   font-size: 1.4rem;
   font-weight: 400;
 }
@@ -606,7 +597,7 @@ html.no-fx .marcas__lista[aria-hidden="true"] {
 }
 
 .info__grande {
-  font-family: var(--serif);
+  font-family: var(--serif-texto);
   font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.1rem);
   line-height: 1.15;
 }
@@ -741,7 +732,7 @@ html.no-fx .marcas__lista[aria-hidden="true"] {
 }
 
 .item__nome {
-  font-family: var(--serif);
+  font-family: var(--serif-texto);
   font-size: 1.08rem;
   line-height: 1.2;
 }
@@ -867,9 +858,9 @@ html.no-fx .marcas__lista[aria-hidden="true"] {
 }
 
 .sacola__total strong {
-  font-family: var(--serif);
+  font-family: var(--serif-texto);
   font-size: 1.7rem;
-  font-weight: 500;
+  font-weight: 400;
   font-variant-numeric: tabular-nums;
 }
 
@@ -987,7 +978,7 @@ html.no-fx .marcas__lista[aria-hidden="true"] {
 }
 
 .detalhe__preco {
-  font-family: var(--serif);
+  font-family: var(--serif-texto);
   font-size: 1.8rem;
   font-variant-numeric: tabular-nums;
 }

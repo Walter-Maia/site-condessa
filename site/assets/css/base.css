@@ -1,5 +1,39 @@
 /* Condessa Beauty — base compartilhada (tokens, tipografia, cabeçalho, botões, rodapé) */
 
+/* Fontes hospedadas no próprio site (subconjunto latin, licença OFL):
+   Italiana = títulos grandes e marca · Bellefair = títulos pequenos e valores · Alegreya Sans = texto */
+@font-face {
+  font-family: "Italiana";
+  src: url("../fonts/italiana-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bellefair";
+  src: url("../fonts/bellefair-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Alegreya Sans";
+  src: url("../fonts/alegreya-sans-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Alegreya Sans";
+  src: url("../fonts/alegreya-sans-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --creme: #f7f1e8;
   --marfim: #fcfaf6;
@@ -11,8 +45,9 @@
   --ouro: #b4935a;
   --ouro-claro: #d9c49a;
 
-  --serif: "Bodoni Moda", "Didot", "Bodoni MT", "Playfair Display", Georgia, serif;
-  --sans: "Jost", "Avenir Next", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --serif: "Italiana", "Bellefair", "Didot", "Times New Roman", serif;
+  --serif-texto: "Bellefair", "Italiana", Georgia, "Times New Roman", serif;
+  --sans: "Alegreya Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
 
   --gut: clamp(1.1rem, 4vw, 3.5rem);
   --raio: 18px;
@@ -71,9 +106,10 @@ body {
   background: var(--creme);
   color: var(--tinta);
   font-family: var(--sans);
-  font-size: clamp(1rem, 0.95rem + 0.2vw, 1.0625rem);
-  font-weight: 350;
-  line-height: 1.6;
+  font-size: clamp(1.06rem, 1rem + 0.25vw, 1.16rem);
+  font-weight: 400;
+  font-synthesis: none; /* sem negrito ou itálico falsos: as famílias não têm esses cortes */
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
@@ -159,19 +195,20 @@ button {
 .titulo {
   font-family: var(--serif);
   font-weight: 400;
-  line-height: 1.02;
-  letter-spacing: -0.01em;
+  line-height: 1.04;
+  letter-spacing: 0;
   text-wrap: balance;
 }
 
+/* destaque só pela cor: as fontes de título não têm itálico */
 .titulo em {
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
   color: var(--moca);
 }
 
 .sobre {
-  font-size: 0.72rem;
+  font-size: 0.76rem;
   font-weight: 500;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -191,17 +228,17 @@ button {
 
 .marca__nome {
   font-family: var(--serif);
-  font-size: 1.28rem;
-  font-weight: 500;
+  font-size: 1.42rem;
+  font-weight: 400;
   letter-spacing: 0.2em;
   margin-right: -0.2em;
 }
 
 .marca__sub {
-  font-size: 0.5rem;
+  font-size: 0.56rem;
   font-weight: 500;
-  letter-spacing: 0.52em;
-  margin-right: -0.52em;
+  letter-spacing: 0.5em;
+  margin-right: -0.5em;
   text-transform: uppercase;
 }
 
@@ -303,17 +340,8 @@ button {
 .topo.is-solido,
 .topo--claro {
   color: var(--cafe);
-  background: rgba(247, 241, 232, 0.94);
+  background: rgba(247, 241, 232, 0.97);
   box-shadow: 0 1px 0 rgba(58, 38, 25, 0.08);
-}
-
-@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .topo.is-solido,
-  .topo--claro {
-    background: rgba(247, 241, 232, 0.78);
-    -webkit-backdrop-filter: blur(14px) saturate(1.2);
-    backdrop-filter: blur(14px) saturate(1.2);
-  }
 }
 
 .topo__nav {
@@ -430,7 +458,7 @@ button {
   }
 
   .topo .marca__nome {
-    font-size: 1.05rem;
+    font-size: 1.14rem;
     letter-spacing: 0.16em;
     margin-right: -0.16em;
   }

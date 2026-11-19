@@ -10,11 +10,10 @@
   <meta name="robots" content="noindex, nofollow">
   <!-- Decide a abertura antes da 1ª pintura: uma vez por sessão, nunca com âncora, aba oculta, movimento reduzido ou ?fx=0. ?intro=1 força. -->
   <script>(function(){var d=document.documentElement;try{var q=new URLSearchParams(location.search);if(q.get("fx")==="0"||matchMedia("(prefers-reduced-motion: reduce)").matches){d.classList.add("no-fx");return}d.classList.add("fx");if(q.get("intro")!=="1"&&(sessionStorage.getItem("condessa-intro")||location.hash||document.hidden))return;d.classList.add("intro-active","intro-trava")}catch(e){}})();</script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Jost:wght@300..600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/base.css?v=5">
-  <link rel="stylesheet" href="assets/css/home.css?v=5">
+  <link rel="preload" href="assets/fonts/italiana-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/alegreya-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/base.css?v=7">
+  <link rel="stylesheet" href="assets/css/home.css?v=7">
 </head>
 <body class="home">
 
@@ -43,7 +42,7 @@
     <h1 class="so-leitor">Condessa Beauty — escolha entre o Studio e o Shop</h1>
 
     <a class="porta porta--studio" href="studio.html" data-porta>
-      <span class="porta__img"><img src="assets/img/cena-recepcao.jpg" alt="" width="2688" height="1520" fetchpriority="high"></span>
+      <span class="porta__img"><img src="assets/img/cena-recepcao.webp" alt="" width="1920" height="1086" fetchpriority="high"></span>
       <span class="porta__veu"></span>
       <span class="porta__txt">
         <span class="porta__rot">01 · Rua Jonas, 135</span>
@@ -54,7 +53,7 @@
     </a>
 
     <a class="porta porta--shop" href="shop.html" data-porta>
-      <span class="porta__img"><img src="assets/img/cena-shop.jpg" alt="" width="2688" height="1520"></span>
+      <span class="porta__img"><img src="assets/img/cena-shop.webp" alt="" width="1920" height="1086"></span>
       <span class="porta__veu"></span>
       <span class="porta__txt">
         <span class="porta__rot">02 · Rua Belo Horizonte, 273</span>
@@ -75,7 +74,7 @@
     </span>
   </footer>
 
-  <script src="assets/js/transicao.js?v=5" defer></script>
-  <script src="assets/js/home.js?v=5" defer></script>
+  <script src="assets/js/transicao.js?v=7" defer></script>
+  <script src="assets/js/home.js?v=7" defer></script>
 </body>
 </html>

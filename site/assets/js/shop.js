@@ -24,91 +24,91 @@
 
   var PRODUTOS = [
     {
-      id: 'paleta-contorno', cat: 'rosto', selo: 'Queridinho', preco: 119.9, img: 'prod-paleta.jpg',
+      id: 'paleta-contorno', cat: 'rosto', selo: 'Queridinho', preco: 119.9, img: 'prod-paleta.webp',
       nome: 'Paleta de contorno Fran', marca: 'Fran by Franciny Ehlke',
       desc: 'Se fosse para escolher um único item de maquiagem para a vida toda, a Tamires ficaria com esta paleta.',
       pontos: ['Tons para iluminar e contornar', 'Textura cremosa, fácil de esfumar']
     },
     {
-      id: 'perfume-arabe', cat: 'perfumes', selo: 'Importado', preco: 189.9, img: 'prod-perfume-arabe.jpg',
+      id: 'perfume-arabe', cat: 'perfumes', selo: 'Importado', preco: 189.9, img: 'prod-perfume-arabe.webp',
       nome: 'Perfume árabe', marca: 'Perfumes árabes',
       desc: 'Fragrâncias marcantes, daquelas que não passam despercebidas. Informe a referência desejada ao finalizar.',
       pontos: ['Para começar: A017, A002 e A024', 'Masculinos: A032, 005 e 443', 'Peça ajuda para escolher pelo WhatsApp']
     },
     {
-      id: 'bronzer-ruby', cat: 'rosto', preco: 49.9, img: 'prod-bronzer.jpg',
+      id: 'bronzer-ruby', cat: 'rosto', preco: 49.9, img: 'prod-bronzer.webp',
       nome: 'Bronzer Ruby Kisses', marca: 'Ruby Kisses',
       desc: 'Efeito bronzeado elegante, que realça os contornos e dá acabamento à pele.',
       pontos: ['Cor usada nos nossos vídeos: Banho de Sol']
     },
     {
-      id: 'lip-oil-ruby', cat: 'labios', selo: '4 cores', preco: 29.9, img: 'prod-lip-oil.jpg',
+      id: 'lip-oil-ruby', cat: 'labios', selo: '4 cores', preco: 29.9, img: 'prod-lip-oil.webp',
       nome: 'Lip Oil Ruby Kisses', marca: 'Ruby Kisses',
       desc: 'Lábios macios, hidratados e com brilho para o dia a dia.',
       pontos: ['Quatro cores disponíveis', 'Diga a cor escolhida ao finalizar o pedido']
     },
     {
-      id: 'mascara-panda', cat: 'olhos', preco: 44.9, img: 'prod-mascara.jpg',
+      id: 'mascara-panda', cat: 'olhos', preco: 44.9, img: 'prod-mascara.webp',
       nome: 'Máscara de cílios Panda', marca: 'Dailus',
       desc: 'Volume nos cílios sem bagunça na hora de tirar: forma uma película nos fios e sai com água morna.',
       pontos: ['Sem o famoso efeito panda', 'Remoção prática com água morna']
     },
     {
-      id: 'blush-liquido', cat: 'rosto', preco: 34.9, img: 'prod-blush.jpg',
+      id: 'blush-liquido', cat: 'rosto', preco: 34.9, img: 'prod-blush.webp',
       nome: 'Blush líquido Glossy rosa coral', marca: '',
       desc: 'Tom rosa coral com brilho dourado e pigmentação na medida.',
       pontos: ['Fórmula vegana com vitamina E', 'Multifuncional: rosto, lábios e olhos', 'Aplicador cushion com trava contra vazamentos']
     },
     {
-      id: 'corretivo-latika', cat: 'rosto', preco: 39.9, img: 'prod-corretivo.jpg',
+      id: 'corretivo-latika', cat: 'rosto', preco: 39.9, img: 'prod-corretivo.webp',
       nome: 'Corretivo líquido Latika', marca: 'Latika',
       desc: 'O item que a Kelly, da nossa equipe, levaria para a vida toda.',
       pontos: ['Consulte os tons disponíveis']
     },
     {
-      id: 'base-liquida', cat: 'rosto', preco: 69.9, img: 'prod-base.jpg',
+      id: 'base-liquida', cat: 'rosto', preco: 69.9, img: 'prod-base.webp',
       nome: 'Base líquida', marca: 'Mascavo e outras marcas',
       desc: 'Bases de marcas brasileiras em vários tons de pele. Na loja, a equipe ajuda a acertar a cor.',
       pontos: ['Informe o seu tom ao finalizar']
     },
     {
-      id: 'fixador-real-fix', cat: 'rosto', preco: 54.9, img: 'prod-fixador.jpg',
+      id: 'fixador-real-fix', cat: 'rosto', preco: 54.9, img: 'prod-fixador.webp',
       nome: 'Fixador de maquiagem Real Fix', marca: 'Vizzela',
       desc: 'Para quem diz que a maquiagem não dura: a solução vai no final da make.',
       pontos: ['Bruma fixadora em spray']
     },
     {
-      id: 'balance-cream', cat: 'rosto', preco: 59.9, img: 'prod-balance.jpg',
+      id: 'balance-cream', cat: 'rosto', preco: 59.9, img: 'prod-balance.webp',
       nome: 'Balance Cream', marca: 'Make More',
       desc: 'Preparador de pele que virou queridinho do momento por aqui.',
       pontos: ['Repõe a hidratação', 'Minimiza os poros', 'Dermatologicamente testado']
     },
     {
-      id: 'brand-collection', cat: 'perfumes', preco: 79.9, img: 'prod-brand.jpg',
+      id: 'brand-collection', cat: 'perfumes', preco: 79.9, img: 'prod-brand.webp',
       nome: 'Perfume Brand Collection', marca: 'Brand Collection',
       desc: 'Fragrâncias inspiradas em clássicos da perfumaria, para estar sempre cheirosa.',
       pontos: ['Informe a numeração desejada ao finalizar']
     },
     {
-      id: 'batom-vermelho', cat: 'labios', preco: 32.9, img: 'prod-batom.jpg',
+      id: 'batom-vermelho', cat: 'labios', preco: 32.9, img: 'prod-batom.webp',
       nome: 'Batom vermelho', marca: '',
       desc: 'Um batom vermelho tem um impacto belíssimo. Clássico para olho neutro e boca marcada.',
       pontos: ['Consulte as marcas e acabamentos disponíveis']
     },
     {
-      id: 'kit-pinceis', cat: 'acessorios', preco: 89.9, img: 'prod-pinceis.jpg',
+      id: 'kit-pinceis', cat: 'acessorios', preco: 89.9, img: 'prod-pinceis.webp',
       nome: 'Kit de pincéis para esfumado', marca: '',
       desc: 'Pincéis para os mais diversos esfumados nos olhos.',
       pontos: ['Formatos para depositar, esfumar e detalhar']
     },
     {
-      id: 'esponja', cat: 'acessorios', preco: 19.9, img: 'prod-esponja.jpg',
+      id: 'esponja', cat: 'acessorios', preco: 19.9, img: 'prod-esponja.webp',
       nome: 'Esponja de maquiagem', marca: '',
       desc: 'Esponja antiga acumula resíduos e oleosidade. Trocar faz diferença no acabamento da pele.',
       pontos: ['Para base, corretivo e produtos cremosos']
     },
     {
-      id: 'kit-presente', cat: 'kits', selo: 'Presente', preco: 149.9, img: 'prod-kit.jpg',
+      id: 'kit-presente', cat: 'kits', selo: 'Presente', preco: 149.9, img: 'prod-kit.webp',
       nome: 'Kit presente Condessa', marca: '',
       desc: 'Kits pensados para presentear em datas especiais, com beleza, carinho e perfume.',
       pontos: ['Montagem conforme a data e a disponibilidade', 'Retirada na loja ou entrega']
@@ -211,8 +211,8 @@
     var img = new Image();
     img.src = 'assets/img/' + p.img;
     img.alt = '';
-    img.width = 1024;
-    img.height = 1024;
+    img.width = 800;
+    img.height = 800;
     img.loading = 'lazy';
     img.decoding = 'async';
     ver.appendChild(img);
