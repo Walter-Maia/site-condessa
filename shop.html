@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Condessa Beauty Shop — maquiagens, perfumes e acessórios em Ipatinga</title>
+  <meta name="description" content="Condessa Beauty Shop: maquiagens brasileiras, perfumes importados, pincéis e kits. Monte a sua sacola e finalize pelo WhatsApp. Rua Belo Horizonte, 273, Centro, Ipatinga.">
+  <meta name="theme-color" content="#f7f1e8">
+  <!-- Prévia: fora dos buscadores enquanto preços e textos não forem confirmados. Remova esta linha no lançamento. -->
+  <meta name="robots" content="noindex, nofollow">
+  <script>(function(){var d=document.documentElement;try{if(new URLSearchParams(location.search).get("fx")==="0"||matchMedia("(prefers-reduced-motion: reduce)").matches){d.classList.add("no-fx");return}d.classList.add("fx")}catch(e){}})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Jost:wght@300..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css?v=5">
+  <link rel="stylesheet" href="assets/css/shop.css?v=5">
+</head>
+<body class="shop">
+  <a class="pular" href="#produtos">Pular para os produtos</a>
+
+  <header class="topo topo--claro" id="topo">
+    <a class="marca" href="index.html" aria-label="Condessa Beauty — voltar ao início">
+      <span class="marca__nome">CONDESSA</span>
+      <span class="marca__sub">BEAUTY SHOP</span>
+    </a>
+
+    <nav class="topo__nav" aria-label="Seções do Shop">
+      <a href="#produtos">Produtos</a>
+      <a href="#como-comprar">Como comprar</a>
+      <a href="#loja">A loja</a>
+    </nav>
+
+    <div class="topo__acoes">
+      <div class="troca" aria-label="Alternar entre Studio e Shop">
+        <a href="studio.html">Studio</a>
+        <span aria-current="page"><b>Shop</b></span>
+      </div>
+      <button class="icone-btn" type="button" id="abrir-sacola" aria-label="Abrir sacola" aria-haspopup="dialog" aria-controls="sacola">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 8.5h13l-1 11.5h-11zM9 8.5V7a3 3 0 0 1 6 0v1.5"/></svg>
+        <span class="contador" id="contador" hidden>0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ Vitrine ============ -->
+    <section class="vitrine">
+      <div class="vitrine__txt">
+        <p class="sobre" data-revelar>Condessa Beauty Shop · Ipatinga</p>
+        <h1 class="titulo" data-revelar style="--atraso:.06s">Sua loja de beleza <em>favorita.</em></h1>
+        <p class="vitrine__lead" data-revelar style="--atraso:.12s">Maquiagens brasileiras, perfumes importados e os acessórios que a gente usa todos os dias. Escolha por aqui e finalize o pedido direto no WhatsApp.</p>
+        <div class="vitrine__acoes" data-revelar style="--atraso:.18s">
+          <a class="botao" href="#produtos">Ver produtos</a>
+          <a class="botao botao--linha" href="#loja">Visitar a loja</a>
+        </div>
+      </div>
+      <div class="vitrine__img" data-revelar style="--atraso:.1s">
+        <img src="assets/img/cena-shop.jpg" alt="Interior da loja: prateleiras iluminadas com maquiagens e perfumes e um monograma C na parede de mármore." width="2688" height="1520" fetchpriority="high">
+      </div>
+    </section>
+
+    <!-- ============ Marcas ============ -->
+    <section class="marcas" aria-label="Marcas que você encontra na loja">
+      <div class="marcas__trilho">
+        <ul class="marcas__lista">
+          <li>Mascavo</li><li>Océane</li><li>Dailus</li><li>Ruby Kisses</li><li>Latika</li><li>Vizzela</li><li>Make More</li><li>Fran by Franciny Ehlke</li><li>Brand Collection</li><li>Perfumes árabes</li>
+        </ul>
+        <ul class="marcas__lista" aria-hidden="true">
+          <li>Mascavo</li><li>Océane</li><li>Dailus</li><li>Ruby Kisses</li><li>Latika</li><li>Vizzela</li><li>Make More</li><li>Fran by Franciny Ehlke</li><li>Brand Collection</li><li>Perfumes árabes</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ Produtos ============ -->
+    <section class="catalogo" id="produtos">
+      <div class="catalogo__cab">
+        <div>
+          <p class="sobre">Catálogo</p>
+          <h2 class="titulo">Escolha os seus <em>queridinhos.</em></h2>
+        </div>
+        <p class="aviso-preco" id="aviso-preco" hidden>Valores e imagens ilustrativos. O preço final é confirmado no atendimento.</p>
+      </div>
+
+      <div class="filtros" id="filtros">
+        <div class="filtros__chips" role="group" aria-label="Filtrar por categoria" id="chips"></div>
+        <div class="filtros__campos">
+          <label class="busca">
+            <span class="so-leitor">Buscar produto</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+            <input type="search" id="busca" placeholder="Buscar produto" autocomplete="off" enterkeyhint="search">
+          </label>
+          <label class="ordem">
+            <span class="so-leitor">Ordenar por</span>
+            <select id="ordem">
+              <option value="destaque">Destaques</option>
+              <option value="menor">Menor preço</option>
+              <option value="maior">Maior preço</option>
+              <option value="az">Nome A–Z</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <p class="catalogo__resumo" id="resumo" aria-live="polite"></p>
+      <div class="grade" id="grade"></div>
+      <p class="catalogo__vazio" id="vazio" hidden>Nada por aqui com esse filtro. <button type="button" class="link-seta" id="limpar">Ver todos os produtos</button></p>
+
+      <noscript>
+        <p class="catalogo__vazio">Para montar a sacola é preciso ativar o JavaScript. Você também pode pedir direto pelo <a href="https://wa.me/5531975125527">WhatsApp da loja</a>.</p>
+      </noscript>
+    </section>
+
+    <!-- ============ Como comprar ============ -->
+    <section class="secao como" id="como-comprar">
+      <div class="secao__miolo">
+        <p class="sobre" data-revelar>Como comprar</p>
+        <h2 class="titulo" data-revelar style="--atraso:.06s">Simples como mandar <em>uma mensagem.</em></h2>
+        <ol class="como__passos">
+          <li data-revelar><b>Monte a sacola</b><span>Escolha os produtos e ajuste as quantidades.</span></li>
+          <li data-revelar style="--atraso:.08s"><b>Finalize no WhatsApp</b><span>O pedido chega pronto para a nossa equipe, que confirma valores e disponibilidade.</span></li>
+          <li data-revelar style="--atraso:.16s"><b>Retire ou receba</b><span>Combine a retirada na loja ou a entrega direto no atendimento.</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ A loja ============ -->
+    <section class="secao loja" id="loja">
+      <div class="secao__miolo loja__grade">
+        <div data-revelar>
+          <p class="sobre">A loja</p>
+          <h2 class="titulo">Venha escolher <em>de perto.</em></h2>
+          <p class="loja__lead">Testar a cor na pele e sentir o perfume antes de levar faz diferença. A equipe ajuda você a acertar.</p>
+          <div class="loja__acoes">
+            <a class="botao" href="https://wa.me/5531975125527?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">Falar no WhatsApp</a>
+            <a class="botao botao--linha" href="https://www.instagram.com/condessabshop/" target="_blank" rel="noopener">Ver o Instagram</a>
+          </div>
+        </div>
+        <div class="loja__cartoes" data-revelar style="--atraso:.12s">
+          <div class="info">
+            <p class="sobre">Onde</p>
+            <p class="info__grande">Rua Belo Horizonte, 273<br>Centro · Ipatinga</p>
+            <a class="link-seta" href="https://www.google.com/maps/search/?api=1&amp;query=Rua+Belo+Horizonte%2C+273%2C+Centro%2C+Ipatinga+MG" target="_blank" rel="noopener">Abrir no mapa</a>
+          </div>
+          <a class="info info--studio" href="studio.html">
+            <p class="sobre">Do outro lado da marca</p>
+            <p class="info__grande">Studio Condessa Beauty</p>
+            <p>Cabelo, sobrancelhas, lábios, nails e cursos.</p>
+            <span class="link-seta">Entrar no Studio</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="rodape__grade">
+      <div>
+        <a class="marca" href="index.html"><span class="marca__nome">CONDESSA</span><span class="marca__sub">BEAUTY SHOP</span></a>
+      </div>
+      <div>
+        <h3>Shop</h3>
+        <ul>
+          <li>Rua Belo Horizonte, 273, Centro, Ipatinga · MG</li>
+          <li><a href="https://wa.me/5531975125527" target="_blank" rel="noopener">WhatsApp (31) 97512-5527</a></li>
+          <li><a href="https://www.instagram.com/condessabshop/" target="_blank" rel="noopener">@condessabshop</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Studio</h3>
+        <ul>
+          <li>Rua Jonas, 135, Ipatinga · MG</li>
+          <li><a href="studio.html">Conhecer o salão</a></li>
+          <li><a href="https://www.instagram.com/condessabeautystudio/" target="_blank" rel="noopener">@condessabeautystudio</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="rodape__fim">Condessa Beauty · Ipatinga, MG. Imagens ilustrativas; marcas citadas pertencem aos seus titulares.</p>
+  </footer>
+
+  <!-- ============ Sacola ============ -->
+  <div class="fundo-escuro" id="fundo" hidden></div>
+  <aside class="sacola" id="sacola" role="dialog" aria-modal="true" aria-labelledby="sacola-titulo" tabindex="-1" hidden>
+    <header class="sacola__cab">
+      <h2 class="titulo" id="sacola-titulo">Sua sacola</h2>
+      <button class="icone-btn" type="button" id="fechar-sacola" aria-label="Fechar sacola">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </header>
+    <div class="sacola__corpo">
+      <ul class="sacola__itens" id="itens"></ul>
+      <div class="sacola__vazia" id="sacola-vazia">
+        <p class="titulo">Ainda vazia.</p>
+        <p>Adicione produtos para montar o seu pedido.</p>
+        <button type="button" class="botao botao--linha" id="continuar">Ver produtos</button>
+      </div>
+    </div>
+    <footer class="sacola__pe" id="sacola-pe" hidden>
+      <fieldset class="entrega">
+        <legend class="sobre">Como você prefere receber?</legend>
+        <label><input type="radio" name="entrega" value="Retirada na loja" checked><span>Retirar na loja</span></label>
+        <label><input type="radio" name="entrega" value="Entrega (a combinar)"><span>Entrega</span></label>
+      </fieldset>
+      <div class="sacola__total">
+        <span>Subtotal</span>
+        <strong id="subtotal">R$ 0,00</strong>
+      </div>
+      <p class="sacola__nota" id="sacola-nota">Valores ilustrativos, confirmados no atendimento.</p>
+      <a class="botao botao--cheio" id="finalizar" href="https://wa.me/5531975125527" target="_blank" rel="noopener">Finalizar pelo WhatsApp</a>
+      <button type="button" class="sacola__limpar" id="esvaziar">Esvaziar sacola</button>
+    </footer>
+  </aside>
+
+  <!-- ============ Detalhe do produto ============ -->
+  <dialog class="detalhe" id="detalhe" aria-labelledby="detalhe-nome">
+    <button class="icone-btn detalhe__fechar" type="button" id="fechar-detalhe" aria-label="Fechar detalhes">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="detalhe__img"><img id="detalhe-img" src="" alt="" width="1024" height="1024"></div>
+    <div class="detalhe__txt">
+      <p class="sobre" id="detalhe-cat"></p>
+      <h2 class="titulo" id="detalhe-nome"></h2>
+      <p id="detalhe-desc"></p>
+      <ul class="detalhe__pontos" id="detalhe-pontos"></ul>
+      <p class="detalhe__preco" id="detalhe-preco"></p>
+      <button type="button" class="botao botao--cheio" id="detalhe-add">Adicionar à sacola</button>
+    </div>
+  </dialog>
+
+  <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+
+  <script src="assets/js/transicao.js?v=5" defer></script>
+  <script src="assets/js/shop.js?v=5" defer></script>
+</body>
+</html>

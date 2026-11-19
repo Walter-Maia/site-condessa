@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Studio Condessa Beauty — procedimentos e cursos em Ipatinga</title>
+  <meta name="description" content="Entre no Studio Condessa Beauty: mega hair, realinhamento, corte e mechas, sobrancelhas, nanofios, full brows, lash lifting, lábios, face beauty, nails, cone chinês e cursos. Rua Jonas, 135, Ipatinga.">
+  <meta name="theme-color" content="#f7f1e8">
+  <!-- Prévia: fora dos buscadores enquanto preços e textos não forem confirmados. Remova esta linha no lançamento. -->
+  <meta name="robots" content="noindex, nofollow">
+  <!-- Liga os efeitos de rolagem só com movimento permitido; ?fx=0 força o modo estático. -->
+  <script>(function(){var d=document.documentElement;try{if(new URLSearchParams(location.search).get("fx")==="0"||matchMedia("(prefers-reduced-motion: reduce)").matches){d.classList.add("no-fx");return}d.classList.add("fx")}catch(e){}})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Jost:wght@300..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css?v=5">
+  <link rel="stylesheet" href="assets/css/studio.css?v=5">
+</head>
+<body class="studio">
+  <a class="pular" href="#salas">Pular para os procedimentos</a>
+
+  <header class="topo" id="topo">
+    <a class="marca" href="index.html" aria-label="Condessa Beauty — voltar ao início">
+      <span class="marca__nome">CONDESSA</span>
+      <span class="marca__sub">BEAUTY</span>
+    </a>
+
+    <nav class="topo__nav" aria-label="Seções do Studio">
+      <a href="#salas">Procedimentos</a>
+      <a href="#sala-cursos">Cursos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+
+    <div class="topo__acoes">
+      <div class="troca" aria-label="Alternar entre Studio e Shop">
+        <span aria-current="page"><b>Studio</b></span>
+        <a href="shop.html">Shop</a>
+      </div>
+      <a class="botao topo__cta" data-zap href="https://api.whatsapp.com/send?phone=5531975108617&amp;text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">Agendar</a>
+      <button class="icone-btn topo__menu-btn" type="button" id="abrir-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+      </button>
+    </div>
+    <span class="topo__progresso" aria-hidden="true"></span>
+  </header>
+
+  <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu do Studio">
+    <div class="menu__topo">
+      <span class="marca"><span class="marca__nome">CONDESSA</span><span class="marca__sub">BEAUTY</span></span>
+      <button class="icone-btn" type="button" id="fechar-menu" aria-label="Fechar menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <ul class="menu__lista">
+      <li><a href="#sala-cabelo"><small>01</small>Cabelo</a></li>
+      <li><a href="#sala-olhar"><small>02</small>Olhar</a></li>
+      <li><a href="#sala-rosto"><small>03</small>Rosto &amp; Lábios</a></li>
+      <li><a href="#sala-nails"><small>04</small>Nails</a></li>
+      <li><a href="#sala-bem-estar"><small>05</small>Bem-estar</a></li>
+      <li><a href="#sala-cursos"><small>06</small>Cursos</a></li>
+      <li><a href="#contato"><small>07</small>Contato</a></li>
+    </ul>
+    <div class="menu__pe">
+      <a class="botao botao--cheio" data-zap href="https://api.whatsapp.com/send?phone=5531975108617&amp;text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">Agendar pelo WhatsApp</a>
+      <a class="botao botao--linha botao--cheio" href="shop.html">Ir para o Shop</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- ============ Entrada: role para atravessar a porta ============ -->
+    <section class="entrada" id="entrada" aria-label="Entrada do Studio">
+      <div class="entrada__palco">
+        <picture class="entrada__cam entrada__cam--recepcao" data-foco-x="0.525" data-foco-y="0.53" data-foco-xv="0.5" data-foco-yv="0.475">
+          <source media="(orientation: portrait)" srcset="assets/img/cena-recepcao-v.jpg">
+          <img src="assets/img/cena-recepcao.jpg" alt="Recepção do studio: balcão curvo, parede de mármore e um corredor com portas em arco." width="2688" height="1520">
+        </picture>
+        <picture class="entrada__cam entrada__cam--fachada" data-foco-x="0.5" data-foco-y="0.575" data-foco-xv="0.5" data-foco-yv="0.65">
+          <source media="(orientation: portrait)" srcset="assets/img/cena-fachada-v.jpg">
+          <img src="assets/img/cena-fachada.jpg" alt="Fachada creme do Studio Condessa Beauty com porta em arco aberta e duas oliveiras." width="2688" height="1520" fetchpriority="high">
+        </picture>
+        <div class="entrada__veu" aria-hidden="true"></div>
+        <div class="entrada__sombra" aria-hidden="true"></div>
+
+        <div class="entrada__txt entrada__txt--1">
+          <p class="sobre">Studio Condessa Beauty · Ipatinga</p>
+          <h1 class="titulo">A porta está aberta. <em>Entre.</em></h1>
+          <p class="entrada__lead">Role a página para atravessar a entrada e conhecer o salão, sala por sala.</p>
+        </div>
+
+        <div class="entrada__txt entrada__txt--2">
+          <div class="sala__placa">
+            <p class="sobre">Recepção</p>
+            <p class="titulo entrada__frase">Beleza com naturalidade, <em>liberdade e segurança.</em></p>
+          </div>
+        </div>
+
+        <div class="entrada__role" aria-hidden="true"><span></span>Role para entrar</div>
+      </div>
+    </section>
+
+    <!-- ============ Manifesto ============ -->
+    <section class="secao manifesto" id="salas">
+      <div class="secao__miolo manifesto__grade">
+        <div data-revelar>
+          <p class="sobre">Bem-vinda</p>
+          <h2 class="titulo">Cada sala cuida de um detalhe. <em>Todas, de você.</em></h2>
+        </div>
+        <div class="manifesto__txt" data-revelar style="--atraso:.12s">
+          <p>Somos especialistas em beleza com naturalidade, liberdade e segurança. Antes de qualquer procedimento, uma avaliação entende o seu rosto, o seu cabelo e a sua história. A única regra é respeitar a sua beleza natural; o resto é personalizado.</p>
+          <ul class="manifesto__salas" aria-label="Salas do Studio">
+            <li><a href="#sala-cabelo">Cabelo</a></li>
+            <li><a href="#sala-olhar">Olhar</a></li>
+            <li><a href="#sala-rosto">Rosto &amp; Lábios</a></li>
+            <li><a href="#sala-nails">Nails</a></li>
+            <li><a href="#sala-bem-estar">Bem-estar</a></li>
+            <li><a href="#sala-cursos">Cursos</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Sala 01 · Cabelo ============ -->
+    <section class="sala" id="sala-cabelo" data-sala="Cabelo">
+      <div class="sala__fundo" aria-hidden="true">
+        <img src="assets/img/cena-cabelo.jpg" alt="" width="2688" height="1520" loading="lazy">
+        <span class="sala__veu"></span>
+      </div>
+      <div class="sala__conteudo">
+        <header class="sala__cab">
+          <div class="sala__placa" data-revelar>
+            <p class="sobre">Sala 01</p>
+            <h2 class="titulo">Cabelo</h2>
+            <p>Comprimento, alinhamento, corte e cor pensados para o seu fio e para a sua rotina.</p>
+          </div>
+        </header>
+        <div class="cartoes">
+          <article class="cartao" id="mega-hair" data-revelar>
+            <div class="cartao__img"><img src="assets/img/proc-megahair.jpg" alt="Cabelo castanho longo e ondulado visto de costas." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__txt">
+              <h3 class="titulo">Mega Hair</h3>
+              <p>Tudo começa na escolha dos fios. Depois vêm o movimento, a leveza e um acabamento tão natural que você esquece que está usando.</p>
+              <a class="link-seta" data-zap="Mega Hair" href="https://api.whatsapp.com/send?phone=5531975108617&amp;text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">Agendar avaliação</a>
+            </div>
+          </article>
+          <article class="cartao" id="realinhamento" data-revelar style="--atraso:.08s">
+            <div class="cartao__img"><img src="assets/img/proc-realinhamento.jpg" alt="Cabelo escuro longo, liso e brilhante sendo penteado." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__txt">
+              <h3 class="titulo">Realinhamento</h3>
+              <p>Fios alinhados, com brilho e menos frizz no dia a dia. A indicação é feita em avaliação, de acordo com o histórico do seu cabelo.</p>
+              <a class="link-seta" data-zap="Realinhamento" href="https://api.whatsapp.com/send?phone=5531975108617&amp;text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">Agendar avaliação</a>
+            </div>
+          </article>
+          <article class="cartao" id="corte-mechas" data-revelar style="--atraso:.16s">
+            <div class="cartao__img"><img src="assets/img/proc-corte-mechas.jpg" alt="Corte em camadas com mechas mel sendo finalizado com tesoura e pente." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__txt">
+              <h3 class="titulo">Corte &amp; Mechas</h3>
+              <p>O corte Tamires Condessa, em camadas, traz movimento, leveza e um caimento que valoriza o rosto. É o mais pedido da casa. As mechas iluminam sem pesar.</p>
+              <a class="link-seta" data-zap="Corte e Mechas" href="https://api.whatsapp.com/send?phone=5531975108617&amp;text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">Agendar horário</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Sala 02 · Olhar ============ -->
+    <section class="sala" id="sala-olhar" data-sala="Olhar">
+      <div class="sala__fundo" aria-hidden="true">
+        <img src="assets/img/cena-olhar.jpg" alt="" width="2688" height="1520" loading="lazy">
+        <span class="sala__veu"></span>
+      </div>
+      <div class="sala__conteudo">
+        <header class="sala__cab">
+          <div class="sala__placa" data-revelar>
+            <p class="sobre">Sala 02</p>
+            <h2 class="titulo">Olhar</h2>
+            <p>Nada pronto, nada padronizado. Um desenho pensado para equilibrar os seus traços.</p>
+          </div>
+        </header>
+        <div class="cartoes cartoes--quatro">
+          <article class="cartao" id="sobrancelhas" data-revelar>
+            <div class="cartao__img"><img src="assets/img/proc-sobrancelhas.jpg" alt="Close de um olho castanho com sobrancelha natural bem desenhada." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__txt">
+              <h3 class="titulo">Sobrancelhas</h3>
+              <p>Design que organiza o desenho e valoriza o olhar, respeitando a estrutura natural da sua sobrancelha.</p>
+              <a class="link-seta" data-zap="Sobrancelhas" href="https://api.whatsapp.com/send?phone=5531975108617&amp;text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">Agendar horário</a>
+            </div>
+          </article>
+          <article class="cartao" id="nanofios" data-revelar style="--atraso:.08s">
+            <div class="cartao__img"><img src="assets/img/proc-nanofios.jpg" alt="Profissional desenhando fios finos em uma sobrancelha." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__txt">
+              <h3 class="titulo">Nanofios</h3>
+              <p>Nossa técnica exclusiva preenche fio a fio, com naturalidade e precisão, cobrindo falhas pontuais em harmonia com o rosto.</p>
+              <a class="link-seta" data-zap="Nanofios" href="https://api.whatsapp.com/send?phone=5531975108617&amp;text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">Agendar avaliação</a>
+            </div>
+          </article>
+          <article class="cartao" id="full-brows" data-revelar style="--atraso:.16s">
+            <div class="cartao__img"><img src="assets/img/proc-full-brows.jpg" alt="Sobrancelhas cheias com os fios alinhados para cima." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__txt">
+              <h3 class="titulo">Full Brows</h3>
+              <p>Fios alinhados, maleáveis e direcionados para preencher falhas e dar volume, sem perder a naturalidade.</p>
+              <a class="link-seta" data-zap="Full Brows" href="https://api.whatsapp.com/send?phone=5531975108617&amp;text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">Agendar horário</a>
+            </div>
+          </article>
+          <article class="cartao" id="lash-lifting" data-revelar style="--atraso:.24s">
+            <div class="cartao__img"><img src="assets/img/proc-lash-lifting.jpg" alt="Cílios naturais curvados e levantados." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__txt">
+              <h3 class="titulo">Lash Lifting</h3>
+              <p>Curvatura e levantamento dos seus próprios cílios, para um olhar aberto mesmo sem máscara.</p>
+              <a class="link-seta" data-zap="Lash Lifting" href="https://api.whatsapp.com/send?phone=5531975108617&amp;text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">Agendar horário</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Sala 03 · Rosto & Lábios ============ -->
+    <section class="sala" id="sala-rosto" data-sala="Rosto &amp; Lábios">
+      <div class="sala__fundo" aria-hidden="true">
+        <img src="assets/img/cena-face.jpg" alt="" width="2688" height="1520" loading="lazy">
+        <span class="sala__veu"></span>
+      </div>
+      <div class="sala__conteudo">
+        <header class="sala__cab">
+          <div class="sala__placa" data-revelar>
+            <p class="sobre">Sala 03</p>
+            <h2 class="titulo">Rosto &amp; Lábios</h2>
+            <p>Cuidado, cor e produção para você se enxergar do jeito que merece.</p>
+          </div>
+        </header>
+        <div class="cartoes">
+          <article class="cartao" id="labios" data-revelar>
+            <div class="cartao__img"><img src="assets/img/proc-labios.jpg" alt="Close de lábios com cor natural e contorno suave." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__txt">
+              <h3 class="titulo">Lábios</h3>
+              <p>Cor e contorno realçados com acabamento natural. O tom é escolhido com você, na avaliação.</p>
+              <a class="link-seta" data-zap="Lábios" href="https://api.whatsapp.com/send?phone=5531975108617&amp;text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">Agendar avaliação</a>
+            </div>
+          </article>
+          <article class="cartao" id="face-beauty" data-revelar style="--atraso:.08s">
+            <div class="cartao__img"><img src="assets/img/proc-face-beauty.jpg" alt="Cliente de olhos fechados recebendo um cuidado facial." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__txt">
+              <h3 class="titulo">Face Beauty</h3>
+              <p>Cuidados para o rosto em um momento só seu, com atenção ao que a sua pele pede.</p>
+              <a class="link-seta" data-zap="Face Beauty" href="https://api.whatsapp.com/send?phone=5531975108617&amp;text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">Agendar horário</a>
+            </div>
+          </article>
+          <article class="cartao" id="producoes" data-revelar style="--atraso:.16s">
+            <div class="cartao__img"><img src="assets/img/proc-noivas.jpg" alt="Noiva de costas, com ondas polidas no cabelo, diante de uma cortina clara." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__txt">
+              <h3 class="titulo">Produções &amp; Noivas</h3>
+              <p>Make e penteado para o seu evento. Para noivas, também fazemos a troca de penteado no local, depois da cerimônia.</p>
+              <a class="link-seta" data-zap="Produções e Noivas" href="https://api.whatsapp.com/send?phone=5531975108617&amp;text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">Consultar data</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Sala 04 · Nails ============ -->
+    <section class="sala" id="sala-nails" data-sala="Nails">
+      <div class="sala__fundo" aria-hidden="true">
+        <img src="assets/img/cena-nails.jpg" alt="" width="2688" height="1520" loading="lazy">
+        <span class="sala__veu"></span>
+      </div>
+      <div class="sala__conteudo">
+        <header class="sala__cab">
+          <div class="sala__placa" data-revelar>
+            <p class="sobre">Sala 04</p>
+            <h2 class="titulo">Nails</h2>
+            <p>Uma pausa na mesa de mármore para sair com as unhas do jeito que você gosta.</p>
+          </div>
+        </header>
+        <div class="cartoes cartoes--um">
+          <article class="cartao cartao--largo" id="nails" data-revelar>
+            <div class="cartao__img"><img src="assets/img/proc-nails.jpg" alt="Mãos com unhas amendoadas em tom nude leitoso." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__txt">
+              <h3 class="titulo">Nails (unhas)</h3>
+              <p>Cuidado e acabamento caprichado, do formato à cor. Conte no agendamento o que você tem em mente e a gente reserva o tempo certo para você.</p>
+              <a class="link-seta" data-zap="Nails" href="https://api.whatsapp.com/send?phone=5531975108617&amp;text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">Agendar horário</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Sala 05 · Bem-estar ============ -->
+    <section class="sala" id="sala-bem-estar" data-sala="Bem-estar">
+      <div class="sala__fundo" aria-hidden="true">
+        <img src="assets/img/cena-bemestar.jpg" alt="" width="2688" height="1520" loading="lazy">
+        <span class="sala__veu"></span>
+      </div>
+      <div class="sala__conteudo">
+        <header class="sala__cab">
+          <div class="sala__placa" data-revelar>
+            <p class="sobre">Sala 05</p>
+            <h2 class="titulo">Bem-estar</h2>
+            <p>Luz baixa, silêncio e tempo. A sala mais calma do Studio.</p>
+          </div>
+        </header>
+        <div class="cartoes cartoes--um">
+          <article class="cartao cartao--largo" id="cone-chines" data-revelar>
+            <div class="cartao__img"><img src="assets/img/proc-cone-chines.jpg" alt="Cones de cera natural sobre uma bandeja de madeira, com toalha e eucalipto." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__txt">
+              <h3 class="titulo">Cone Chinês</h3>
+              <p>Um ritual de relaxamento feito com cones, em ambiente tranquilo e com acompanhamento do início ao fim. Fale com a gente para saber como funciona a sessão.</p>
+              <a class="link-seta" data-zap="Cone Chinês" href="https://api.whatsapp.com/send?phone=5531975108617&amp;text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">Saber mais</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Sala 06 · Cursos ============ -->
+    <section class="sala sala--cursos" id="sala-cursos" data-sala="Cursos">
+      <div class="sala__fundo" aria-hidden="true">
+        <img src="assets/img/cena-cursos.jpg" alt="" width="2688" height="1520" loading="lazy">
+        <span class="sala__veu"></span>
+      </div>
+      <div class="sala__conteudo">
+        <header class="sala__cab">
+          <div class="sala__placa" data-revelar>
+            <p class="sobre">Sala 06</p>
+            <h2 class="titulo">Cursos</h2>
+            <p>Referência em cursos: aqui a gente também ensina o que faz todos os dias.</p>
+          </div>
+        </header>
+        <div class="cartoes cartoes--um">
+          <article class="cartao cartao--largo" id="cursos" data-revelar>
+            <div class="cartao__img"><img src="assets/img/proc-curso.jpg" alt="Aula prática de maquiagem: instrutora aplicando blush em uma modelo." width="896" height="1120" loading="lazy"></div>
+            <div class="cartao__txt">
+              <h3 class="titulo">Curso profissional de maquiagem</h3>
+              <p>Formação dentro do Studio, com a mão na massa desde o primeiro dia.</p>
+              <ol class="passos">
+                <li><b>Teoria na mesa</b><span>Material de apoio e conversa de perto com quem vive de beleza.</span></li>
+                <li><b>Aula prática em modelo</b><span>Você executa, a instrutora acompanha e corrige na hora.</span></li>
+                <li><b>Primeira produção concluída</b><span>Você sai com um resultado completo feito por você.</span></li>
+              </ol>
+              <a class="botao" data-zap="os cursos" href="https://api.whatsapp.com/send?phone=5531975108617&amp;text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">Quero saber das próximas turmas</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Contato ============ -->
+    <section class="secao contato" id="contato">
+      <div class="secao__miolo contato__grade">
+        <div data-revelar>
+          <p class="sobre">Sua vez</p>
+          <h2 class="titulo">O seu horário no Studio <em>é inegociável.</em></h2>
+          <p class="contato__lead">Agende pelo WhatsApp e conte o que você procura. A gente indica o procedimento e reserva o tempo certo.</p>
+          <div class="contato__acoes">
+            <a class="botao" data-zap href="https://api.whatsapp.com/send?phone=5531975108617&amp;text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">Agendar pelo WhatsApp</a>
+            <a class="botao botao--linha" href="https://www.instagram.com/condessabeautystudio/" target="_blank" rel="noopener">Ver o Instagram</a>
+          </div>
+        </div>
+        <div class="contato__cartoes" data-revelar style="--atraso:.12s">
+          <div class="info">
+            <p class="sobre">Onde</p>
+            <p class="info__grande">Rua Jonas, 135<br>Ipatinga · MG</p>
+            <a class="link-seta" href="https://www.google.com/maps/search/?api=1&amp;query=Rua+Jonas%2C+135%2C+Ipatinga+MG" target="_blank" rel="noopener">Abrir no mapa</a>
+          </div>
+          <a class="info info--shop" href="shop.html">
+            <p class="sobre">Ao lado da sua rotina</p>
+            <p class="info__grande">Condessa Beauty Shop</p>
+            <p>Os produtos usados nas produções estão na nossa loja.</p>
+            <span class="link-seta">Ir para o Shop</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="mapa" id="mapa" aria-label="Salas do Studio">
+    <a href="#sala-cabelo"><span>Cabelo</span></a>
+    <a href="#sala-olhar"><span>Olhar</span></a>
+    <a href="#sala-rosto"><span>Rosto &amp; Lábios</span></a>
+    <a href="#sala-nails"><span>Nails</span></a>
+    <a href="#sala-bem-estar"><span>Bem-estar</span></a>
+    <a href="#sala-cursos"><span>Cursos</span></a>
+  </nav>
+
+  <footer class="rodape">
+    <div class="rodape__grade">
+      <div>
+        <a class="marca" href="index.html"><span class="marca__nome">CONDESSA</span><span class="marca__sub">BEAUTY</span></a>
+      </div>
+      <div>
+        <h3>Studio</h3>
+        <ul>
+          <li>Rua Jonas, 135, Ipatinga · MG</li>
+          <li><a data-zap href="https://api.whatsapp.com/send?phone=5531975108617&amp;text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">WhatsApp (31) 97510-8617</a></li>
+          <li><a href="https://www.instagram.com/condessabeautystudio/" target="_blank" rel="noopener">@condessabeautystudio</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Shop</h3>
+        <ul>
+          <li>Rua Belo Horizonte, 273, Centro</li>
+          <li><a href="shop.html">Ver produtos</a></li>
+          <li><a href="https://www.instagram.com/condessabshop/" target="_blank" rel="noopener">@condessabshop</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="rodape__fim">Condessa Beauty · Ipatinga, MG. Imagens ilustrativas.</p>
+  </footer>
+
+  <script src="assets/js/transicao.js?v=5" defer></script>
+  <script src="assets/js/studio.js?v=5" defer></script>
+</body>
+</html>
