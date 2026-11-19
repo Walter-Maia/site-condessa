@@ -9,11 +9,10 @@
   <!-- Prévia: fora dos buscadores enquanto preços e textos não forem confirmados. Remova esta linha no lançamento. -->
   <meta name="robots" content="noindex, nofollow">
   <script>(function(){var d=document.documentElement;try{if(new URLSearchParams(location.search).get("fx")==="0"||matchMedia("(prefers-reduced-motion: reduce)").matches){d.classList.add("no-fx");return}d.classList.add("fx")}catch(e){}})();</script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Jost:wght@300..600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/base.css?v=5">
-  <link rel="stylesheet" href="assets/css/shop.css?v=5">
+  <link rel="preload" href="assets/fonts/italiana-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/alegreya-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/base.css?v=7">
+  <link rel="stylesheet" href="assets/css/shop.css?v=7">
 </head>
 <body class="shop">
   <a class="pular" href="#produtos">Pular para os produtos</a>
@@ -55,7 +54,7 @@
         </div>
       </div>
       <div class="vitrine__img" data-revelar style="--atraso:.1s">
-        <img src="assets/img/cena-shop.jpg" alt="Interior da loja: prateleiras iluminadas com maquiagens e perfumes e um monograma C na parede de mármore." width="2688" height="1520" fetchpriority="high">
+        <img src="assets/img/cena-shop.webp" alt="Interior da loja: prateleiras iluminadas com maquiagens e perfumes e um monograma C na parede de mármore." width="1920" height="1086" fetchpriority="high">
       </div>
     </section>
 
@@ -215,7 +214,7 @@
     <button class="icone-btn detalhe__fechar" type="button" id="fechar-detalhe" aria-label="Fechar detalhes">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
-    <div class="detalhe__img"><img id="detalhe-img" src="" alt="" width="1024" height="1024"></div>
+    <div class="detalhe__img"><img id="detalhe-img" alt="" width="800" height="800" decoding="async"></div>
     <div class="detalhe__txt">
       <p class="sobre" id="detalhe-cat"></p>
       <h2 class="titulo" id="detalhe-nome"></h2>
@@ -228,7 +227,7 @@
 
   <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
 
-  <script src="assets/js/transicao.js?v=5" defer></script>
-  <script src="assets/js/shop.js?v=5" defer></script>
+  <script src="assets/js/transicao.js?v=7" defer></script>
+  <script src="assets/js/shop.js?v=7" defer></script>
 </body>
 </html>

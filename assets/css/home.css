@@ -95,9 +95,9 @@ html.intro-active .intro {
 
 .intro__nome {
   font-family: var(--serif);
-  font-size: 92px;
-  font-weight: 500;
-  letter-spacing: 14px;
+  font-size: 96px;
+  font-weight: 400;
+  letter-spacing: 16px;
 }
 
 .intro__l {
@@ -264,7 +264,7 @@ html.intro-active .intro {
 }
 
 .home-topo .marca__nome {
-  font-size: clamp(1.15rem, 0.9rem + 1vw, 1.6rem);
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
 }
 
 .home-rodape {
@@ -353,6 +353,17 @@ html.intro-active .intro {
   object-position: 50% 60%;
 }
 
+/* Em paisagem a foto tem o tamanho do palco inteiro e fica centrada na porta:
+   o hover e o entrar só mudam o recorte, sem redimensionar a imagem a cada quadro. */
+@media (orientation: landscape) {
+  .porta__img {
+    inset: -3% auto auto 50%;
+    width: 106vw;
+    height: 106%;
+    margin-left: -53vw;
+  }
+}
+
 .porta__veu {
   position: absolute;
   inset: 0;
@@ -391,9 +402,9 @@ html.intro-active .intro {
 .porta__titulo {
   --n: 1;
   font-family: var(--serif);
-  font-size: clamp(3.2rem, 2rem + 6.5vw, 7.5rem);
-  line-height: 0.92;
-  letter-spacing: -0.02em;
+  font-size: clamp(3.4rem, 2.1rem + 6.8vw, 7.8rem);
+  line-height: 0.94;
+  letter-spacing: 0;
 }
 
 .porta__desc {

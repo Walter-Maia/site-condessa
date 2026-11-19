@@ -1,5 +1,12 @@
 /* Studio: menu, links de agendamento, câmera da entrada e salas na rolagem.
-   Um único rAF; lê antes de escrever; nada roda fora da tela ou em modo estático. */
+
+   Regras de desempenho deste arquivo:
+   - um único requestAnimationFrame por quadro, disparado pela rolagem;
+   - posições das seções ficam em cache (medidas só quando o layout muda),
+     então rolar não força o navegador a recalcular layout;
+   - só transform e opacity são escritos, direto no elemento animado e apenas
+     quando o valor muda (nada de variáveis CSS em contêineres);
+   - as fotos de fundo são decodificadas antes de a sala chegar à tela. */
 (function () {
   'use strict';
 
@@ -75,101 +82,157 @@
 
   /* ---------- Rolagem ---------- */
   var entrada = document.getElementById('entrada');
-  var palco = entrada && entrada.querySelector('.entrada__palco');
-  var cams = entrada ? todos('.entrada__cam', entrada) : [];
-  var salas = todos('.sala');
+  var cam = entrada && entrada.querySelector('.entrada__cam');
+  var camImg = cam && cam.querySelector('img');
+  var veuEntrada = entrada && entrada.querySelector('.entrada__veu');
+  var sombra = entrada && entrada.querySelector('.entrada__sombra');
+  var txt = entrada && entrada.querySelector('.entrada__txt');
+  var role = entrada && entrada.querySelector('.entrada__role');
+  var progresso = topo && topo.querySelector('.topo__progresso');
   var mapa = document.getElementById('mapa');
   var linksMapa = mapa ? todos('a', mapa) : [];
   var retrato = window.matchMedia('(orientation: portrait)');
 
+  var salas = todos('.sala').map(function (el) {
+    return {
+      el: el,
+      img: el.querySelector('.sala__fundo img'),
+      veu: el.querySelector('.sala__veu'),
+      topo: 0, altura: 0,
+      perto: false, pedida: false,
+      zoom: '', brilho: ''
+    };
+  });
+
   var vh = window.innerHeight;
-  var alvo = 0;      // progresso da entrada medido na rolagem
-  var atual = -1;    // progresso suavizado que vai para a tela
+  var m = { eTopo: 0, eAlt: 0, total: 1 };   // medidas em cache
+  var sujo = true;                           // layout mudou: medir de novo no próximo quadro
+  var alvo = 0;                              // progresso da entrada medido na rolagem
+  var atual = -1;                            // progresso suavizado que vai para a tela
   var ultimoQuadro = 0;
   var agendado = false;
-  var salasVisiveis = [];
+  var eraSolido = null;
+  var ult = {};                              // últimos valores escritos (evita escrita repetida)
 
-  // Ponto de fuga de cada "câmera" em px, calculado sobre o recorte real da imagem (object-fit: cover).
-  var ajustarFocos = function () {
-    cams.forEach(function (cam) {
-      var img = cam.querySelector('img');
-      var sufixo = retrato.matches ? 'v' : '';
-      var fx = parseFloat(cam.getAttribute('data-foco-x' + sufixo)) || 0.5;
-      var fy = parseFloat(cam.getAttribute('data-foco-y' + sufixo)) || 0.5;
-      var bw = cam.clientWidth, bh = cam.clientHeight;
-      var iw = img.naturalWidth || 16, ih = img.naturalHeight || 9;
-      var s = Math.max(bw / iw, bh / ih);
-      var x = (bw - iw * s) / 2 + fx * iw * s;
-      var y = (bh - ih * s) / 2 + fy * ih * s;
-      cam.style.transformOrigin = x.toFixed(1) + 'px ' + y.toFixed(1) + 'px';
-    });
+  var escrever = function (el, prop, valor, chave) {
+    if (!el || ult[chave] === valor) return;
+    ult[chave] = valor;
+    el.style[prop] = valor;
   };
 
-  var pintarEntrada = function (p) {
-    // 0 → 0.36: aproxima da porta. A troca para a recepção acontece na chegada
-    // (0.14 → 0.33), sem o zoom extremo dentro da fachada.
-    var t = Math.pow(faixa(p, 0, 0.36), 1.15);
-    var fs = Math.pow(3.2, t);
-    var fo = 1 - suave(faixa(p, 0.14, 0.33));
-    // A recepção assenta e segue num avanço lento enquanto o site sobe por cima (0.55 → 1).
-    var rs = 1.24 - 0.24 * suave(faixa(p, 0.1, 0.5)) + 0.06 * faixa(p, 0.5, 1);
-    var t1 = 1 - faixa(p, 0, 0.1);
-    var t2 = faixa(p, 0.36, 0.46);
-    var cl = faixa(p, 0.56, 1) * 0.55;
+  var medir = function () {
+    sujo = false;
+    vh = window.innerHeight;
+    var y = window.pageYOffset;
+    if (entrada) {
+      var r = entrada.getBoundingClientRect();
+      m.eTopo = r.top + y;
+      m.eAlt = r.height;
+    }
+    salas.forEach(function (s) {
+      var rs = s.el.getBoundingClientRect();
+      s.topo = rs.top + y;
+      s.altura = rs.height;
+    });
+    m.total = Math.max(1, raiz.scrollHeight - vh);
+  };
 
-    var st = palco.style;
-    st.setProperty('--fs', fs.toFixed(4));
-    st.setProperty('--fo', fo.toFixed(3));
-    st.setProperty('--rs', rs.toFixed(4));
-    st.setProperty('--t1', t1.toFixed(3));
-    st.setProperty('--t2', t2.toFixed(3));
-    st.setProperty('--veu', t1.toFixed(3));
-    st.setProperty('--cl', cl.toFixed(3));
+  // Ponto de fuga da câmera (a porta) em px, sobre o recorte real da imagem (object-fit: cover).
+  var ajustarFoco = function () {
+    if (!cam || !camImg) return;
+    var sufixo = retrato.matches ? 'v' : '';
+    var fx = parseFloat(cam.getAttribute('data-foco-x' + sufixo)) || 0.5;
+    var fy = parseFloat(cam.getAttribute('data-foco-y' + sufixo)) || 0.5;
+    var bw = cam.clientWidth, bh = cam.clientHeight;
+    var iw = camImg.naturalWidth || 16, ih = camImg.naturalHeight || 9;
+    var s = Math.max(bw / iw, bh / ih);
+    var x = (bw - iw * s) / 2 + fx * iw * s;
+    var y = (bh - ih * s) / 2 + fy * ih * s;
+    cam.style.transformOrigin = x.toFixed(1) + 'px ' + y.toFixed(1) + 'px';
+  };
+
+  // Entrada: a câmera se aproxima da porta e o site sobe por cima (sem cena intermediária).
+  var pintarEntrada = function (p) {
+    var escala = Math.pow(2.2, Math.pow(p, 1.05));
+    var texto = 1 - faixa(p, 0, 0.16);
+    var escuro = suave(faixa(p, 0.28, 1)) * 0.5;
+    escrever(cam, 'transform', 'scale(' + escala.toFixed(4) + ')', 'cam');
+    escrever(txt, 'opacity', texto.toFixed(3), 'txtO');
+    escrever(txt, 'transform', 'translate3d(0,' + ((1 - texto) * -30).toFixed(1) + 'px,0)', 'txtT');
+    escrever(veuEntrada, 'opacity', texto.toFixed(3), 'veu');
+    escrever(role, 'opacity', texto.toFixed(3), 'role');
+    escrever(sombra, 'opacity', escuro.toFixed(3), 'sombra');
+  };
+
+  var pedirImagem = function (s) {
+    if (s.pedida || !s.img) return;
+    s.pedida = true;
+    s.img.loading = 'eager';
+    if (s.img.decode) s.img.decode().catch(function () { /* decodifica na pintura, como antes */ });
   };
 
   var quadro = function () {
     agendado = false;
+    if (sujo) medir();
     var y = window.pageYOffset;
-    var total = document.documentElement.scrollHeight - vh;
 
-    // -- leituras --
-    var rEntrada = entrada ? entrada.getBoundingClientRect() : null;
-    var medidas = salasVisiveis.map(function (s) { return s.getBoundingClientRect(); });
-
-    // -- escritas --
+    // -- cabeçalho --
     if (topo) {
-      // com efeitos: o cabeçalho fica sólido quando o site encosta no topo
-      var limite = rEntrada && comFx ? rEntrada.height - vh - 90 : vh * 0.5;
-      topo.classList.toggle('is-solido', y > limite);
-      topo.style.setProperty('--prog', total > 0 ? limitar(y / total, 0, 1).toFixed(4) : '0');
+      var limite = comFx ? m.eTopo + m.eAlt - vh - 90 : vh * 0.5;
+      var solido = y > limite;
+      if (solido !== eraSolido) { eraSolido = solido; topo.classList.toggle('is-solido', solido); }
+      escrever(progresso, 'transform', 'scaleX(' + limitar(y / m.total, 0, 1).toFixed(4) + ')', 'prog');
     }
 
     if (!comFx) return;
 
-    if (rEntrada && palco) {
-      var curso = rEntrada.height - vh;
-      alvo = curso > 0 ? limitar(-rEntrada.top / curso, 0, 1) : 0;
-      // Suavização por tempo (não por quadro): igual em 60 Hz, 120 Hz ou com quadros perdidos.
-      var agora = performance.now();
-      var dt = agora - ultimoQuadro;
-      ultimoQuadro = agora;
-      if (atual < 0 || dt > 180) atual = alvo;
-      else atual += (alvo - atual) * (1 - Math.exp(-dt / 95));
-      if (Math.abs(alvo - atual) < 0.0004) atual = alvo;
-      if (rEntrada.bottom > -vh) pintarEntrada(atual);
-      if (atual !== alvo) agendar();
+    // -- entrada --
+    if (entrada && cam) {
+      var dentroEntrada = y < m.eTopo + m.eAlt;
+      if (dentroEntrada !== ult.entradaOn) {
+        ult.entradaOn = dentroEntrada;
+        entrada.classList.toggle('is-fora', !dentroEntrada);
+      }
+      if (dentroEntrada) {
+        var curso = m.eAlt - vh;
+        alvo = curso > 0 ? limitar((y - m.eTopo) / curso, 0, 1) : 0;
+        // Suavização por tempo (não por quadro): igual em 60 Hz, 120 Hz ou com quadros perdidos.
+        var agora = performance.now();
+        var dt = agora - ultimoQuadro;
+        ultimoQuadro = agora;
+        if (atual < 0 || dt > 180) atual = alvo;
+        else atual += (alvo - atual) * (1 - Math.exp(-dt / 90));
+        if (Math.abs(alvo - atual) < 0.0005) atual = alvo;
+        pintarEntrada(atual);
+        if (atual !== alvo) agendar();
+      }
     }
 
-    salasVisiveis.forEach(function (sala, i) {
-      var r = medidas[i];
-      var chegada = limitar((vh - r.top) / vh, 0, 1);          // a sala sobe até encostar no topo
-      var dentro = limitar(-r.top / Math.max(1, r.height - vh), 0, 1);
-      var zoom = 1.16 - 0.1 * chegada - 0.06 * dentro;
-      var entra = faixa(-r.top, vh * 0.3, vh * 0.85);          // cartões começam a cobrir o fundo
-      var sai = faixa(r.bottom - vh, vh * 0.02, vh * 0.3);     // no fim, a sala reaparece limpa
-      sala.style.setProperty('--zoom', zoom.toFixed(4));
-      sala.style.setProperty('--veu', (Math.min(entra, sai) * 0.62).toFixed(3));
-    });
+    // -- salas --
+    for (var i = 0; i < salas.length; i++) {
+      var s = salas[i];
+      var topoRel = s.topo - y;               // topo da sala em relação à janela
+      var fim = topoRel + s.altura;           // fim da sala em relação à janela
+      var perto = topoRel < vh * 2.5 && fim > -vh * 0.5;
+      if (perto !== s.perto) {
+        s.perto = perto;
+        s.el.classList.toggle('is-perto', perto);
+        if (perto) pedirImagem(s);
+      }
+      if (topoRel >= vh || fim <= 0) continue; // fora da tela: nada a animar
+
+      // zoom leve: a sala "chega" e assenta
+      var chegada = limitar((vh - topoRel) / vh, 0, 1);
+      var dentro = limitar(-topoRel / Math.max(1, s.altura - vh), 0, 1);
+      var zoom = 'scale(' + (1.1 - 0.07 * chegada - 0.03 * dentro).toFixed(4) + ')';
+      if (zoom !== s.zoom) { s.zoom = zoom; s.img.style.transform = zoom; }
+
+      // brilho só na passagem: começa quando a próxima sala está para entrar
+      // e cresce enquanto ela sobe; durante a sala o fundo fica nítido.
+      var falta = fim - vh;                   // > 0: ainda há conteúdo desta sala abaixo da janela
+      var brilho = (suave(faixa(-falta, -vh * 0.16, vh * 0.5)) * 0.8).toFixed(3);
+      if (brilho !== s.brilho) { s.brilho = brilho; s.veu.style.opacity = brilho; }
+    }
   };
 
   var agendar = function () {
@@ -178,51 +241,47 @@
     requestAnimationFrame(quadro);
   };
 
-  if (comFx && 'IntersectionObserver' in window) {
-    var obsSalas = new IntersectionObserver(function (entradas) {
-      entradas.forEach(function (e) {
-        var i = salasVisiveis.indexOf(e.target);
-        if (e.isIntersecting && i < 0) salasVisiveis.push(e.target);
-        if (!e.isIntersecting && i >= 0) salasVisiveis.splice(i, 1);
-      });
-      agendar();
-    }, { rootMargin: '20% 0px 20% 0px' });
-    salas.forEach(function (s) { obsSalas.observe(s); });
-
-    // Sala atual no mapa lateral
-    if (mapa) {
-      var noMeio = [];
-      var obsMapa = new IntersectionObserver(function (entradas) {
-        entradas.forEach(function (e) {
-          var i = noMeio.indexOf(e.target);
-          if (e.isIntersecting && i < 0) noMeio.push(e.target);
-          if (!e.isIntersecting && i >= 0) noMeio.splice(i, 1);
-        });
-        var atualId = noMeio.length ? noMeio[noMeio.length - 1].id : '';
-        mapa.classList.toggle('is-ligado', !!atualId);
-        linksMapa.forEach(function (a) {
-          if (a.getAttribute('href') === '#' + atualId) a.setAttribute('aria-current', 'true');
-          else a.removeAttribute('aria-current');
-        });
-      }, { rootMargin: '-48% 0px -48% 0px' });
-      salas.forEach(function (s) { obsMapa.observe(s); });
-    }
-  }
-
-  var aoRedimensionar = function () {
-    vh = window.innerHeight;
-    if (comFx) ajustarFocos();
+  var remedir = function () {
+    sujo = true;
     agendar();
   };
 
+  var aoRedimensionar = function () {
+    if (comFx) ajustarFoco();
+    remedir();
+  };
+
+  // Sala atual no mapa lateral
+  if (comFx && mapa && 'IntersectionObserver' in window) {
+    var noMeio = [];
+    var obsMapa = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        var i = noMeio.indexOf(e.target);
+        if (e.isIntersecting && i < 0) noMeio.push(e.target);
+        if (!e.isIntersecting && i >= 0) noMeio.splice(i, 1);
+      });
+      var atualId = noMeio.length ? noMeio[noMeio.length - 1].id : '';
+      mapa.classList.toggle('is-ligado', !!atualId);
+      linksMapa.forEach(function (a) {
+        if (a.getAttribute('href') === '#' + atualId) a.setAttribute('aria-current', 'true');
+        else a.removeAttribute('aria-current');
+      });
+    }, { rootMargin: '-48% 0px -48% 0px' });
+    salas.forEach(function (s) { obsMapa.observe(s.el); });
+  }
+
   window.addEventListener('scroll', agendar, { passive: true });
   window.addEventListener('resize', aoRedimensionar);
+  window.addEventListener('load', aoRedimensionar);
   retrato.addEventListener('change', aoRedimensionar);
-  cams.forEach(function (cam) {
-    var img = cam.querySelector('img');
-    if (img && !img.complete) img.addEventListener('load', aoRedimensionar);
-  });
+  if (camImg && !camImg.complete) camImg.addEventListener('load', aoRedimensionar);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(remedir);
+  // Qualquer mudança de altura do conteúdo (fontes, imagens, quebra de linha) invalida o cache.
+  if ('ResizeObserver' in window) {
+    var principal = document.querySelector('main');
+    if (principal) new ResizeObserver(remedir).observe(principal);
+  }
 
-  if (comFx) ajustarFocos();
+  if (comFx) ajustarFoco();
   agendar();
 })();
