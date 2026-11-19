@@ -1,0 +1,702 @@
+/* Studio: entrada com câmera na rolagem + salas com fundo fixo.
+   Sem a classe html.fx (JS bloqueado, movimento reduzido ou ?fx=0) tudo vira
+   uma página estática normal: banner, texto e cartões em fluxo. */
+
+/* ===================== Entrada ===================== */
+
+.entrada {
+  position: relative;
+  background: var(--areia);
+}
+
+.entrada__palco {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  min-height: 520px;
+  overflow: hidden;
+  color: var(--marfim);
+  --fs: 1;
+  --fo: 1;
+  --rs: 1;
+  --t1: 1;
+  --t2: 0;
+  --veu: 1;
+  --cl: 0;
+}
+
+.entrada__cam {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 57%;
+}
+
+.entrada__cam img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.entrada__cam--recepcao {
+  display: none;
+}
+
+/* faixa escura fixa no topo: mantém o cabeçalho legível sobre a parede clara */
+.entrada__palco::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 26%;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(42, 28, 20, 0.55), rgba(42, 28, 20, 0));
+  pointer-events: none;
+}
+
+.entrada__veu {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(42, 28, 20, 0) 38%, rgba(42, 28, 20, 0.82) 100%);
+  opacity: var(--veu);
+  pointer-events: none;
+}
+
+/* escurece o palco enquanto o site sobe por cima dele */
+.entrada__sombra {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background: var(--tinta);
+  opacity: var(--cl);
+  pointer-events: none;
+}
+
+.entrada__txt {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  display: grid;
+  gap: clamp(0.6rem, 1.6vh, 1.1rem);
+  max-width: 46rem;
+  padding: 0 var(--gut) calc(clamp(3.4rem, 10vh, 6rem) + env(safe-area-inset-bottom));
+}
+
+.entrada__txt .sobre {
+  color: var(--ouro-claro);
+}
+
+.entrada__txt .titulo {
+  font-size: clamp(2.5rem, 1.3rem + 5.4vw, 5.6rem);
+}
+
+.entrada__txt .titulo em {
+  color: var(--ouro-claro);
+}
+
+.entrada__lead {
+  max-width: 30rem;
+  font-size: clamp(1rem, 0.94rem + 0.3vw, 1.15rem);
+  color: rgba(252, 250, 246, 0.92);
+}
+
+.entrada__txt--1 {
+  opacity: var(--t1);
+  transform: translateY(calc((1 - var(--t1)) * -30px));
+}
+
+.entrada__txt--2 {
+  display: none;
+  opacity: var(--t2);
+  transform: translateY(calc((1 - var(--t2)) * 30px));
+}
+
+.entrada__txt--2 .sobre,
+.entrada__txt--2 .titulo em {
+  color: var(--moca);
+}
+
+.entrada__txt--2 .entrada__frase {
+  font-size: clamp(1.7rem, 1.1rem + 2.4vw, 2.9rem);
+  line-height: 1.08;
+}
+
+.entrada__role {
+  display: none;
+}
+
+/* ---------- Entrada com efeitos ---------- */
+
+/* Trilho curto: ~120vh de rolagem para chegar à porta e trocar para a recepção;
+   nos últimos 100vh o site (manifesto) sobe por cima do palco fixo. */
+html.fx .entrada {
+  height: 320vh;
+}
+
+html.fx .manifesto {
+  position: relative;
+  z-index: 5;
+  margin-top: -100vh;
+  margin-top: -100dvh;
+  border-radius: clamp(20px, 3vw, 38px) clamp(20px, 3vw, 38px) 0 0;
+  box-shadow: 0 -28px 70px -34px rgba(42, 28, 20, 0.55);
+}
+
+html.fx .entrada__palco {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+}
+
+html.fx .entrada__cam {
+  will-change: transform, opacity;
+}
+
+html.fx .entrada__cam--recepcao {
+  display: block;
+  transform: scale(var(--rs));
+}
+
+html.fx .entrada__cam--fachada {
+  transform: scale(var(--fs));
+  opacity: var(--fo);
+}
+
+html.fx .entrada__txt--2 {
+  display: grid;
+}
+
+html.fx .entrada__role {
+  position: absolute;
+  right: var(--gut);
+  bottom: calc(clamp(1.4rem, 4vh, 2.4rem) + env(safe-area-inset-bottom));
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  opacity: var(--t1);
+}
+
+.entrada__role span {
+  position: relative;
+  width: 1px;
+  height: 46px;
+  background: rgba(252, 250, 246, 0.35);
+  overflow: hidden;
+}
+
+.entrada__role span::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--marfim);
+  animation: role-desce 1.9s cubic-bezier(0.6, 0, 0.3, 1) infinite;
+}
+
+@keyframes role-desce {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@media (max-width: 599px) {
+  html.fx .entrada__role {
+    left: var(--gut);
+    right: auto;
+    bottom: calc(1rem + env(safe-area-inset-bottom));
+  }
+
+  .entrada__role span {
+    height: 30px;
+  }
+
+  .entrada__txt {
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+  }
+}
+
+/* barra de progresso da página no cabeçalho */
+.topo__progresso {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--ouro);
+  transform: scaleX(var(--prog, 0));
+  transform-origin: left;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.topo.is-solido .topo__progresso {
+  opacity: 1;
+}
+
+/* ===================== Manifesto ===================== */
+
+.manifesto {
+  background: var(--creme);
+}
+
+.manifesto__grade {
+  display: grid;
+  gap: clamp(1.6rem, 4vw, 4rem);
+}
+
+.manifesto .titulo {
+  margin-top: 1rem;
+  font-size: clamp(2.1rem, 1.3rem + 3.6vw, 4.2rem);
+}
+
+.manifesto__txt {
+  display: grid;
+  gap: 1.6rem;
+  align-content: start;
+  max-width: 34rem;
+  font-size: clamp(1.02rem, 0.96rem + 0.3vw, 1.18rem);
+}
+
+.manifesto__salas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.manifesto__salas a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 1.1rem;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px rgba(107, 74, 56, 0.35);
+  font-size: 0.78rem;
+  font-weight: 450;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--moca);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.manifesto__salas a:hover {
+  background: var(--cafe);
+  color: var(--marfim);
+}
+
+@media (min-width: 900px) {
+  .manifesto__grade {
+    grid-template-columns: 1.15fr 1fr;
+    align-items: end;
+  }
+}
+
+/* ===================== Salas ===================== */
+
+.sala {
+  position: relative;
+  background: var(--areia);
+  --zoom: 1;
+  --veu: 0;
+}
+
+.sala__fundo {
+  position: relative;
+  height: 56vh;
+  min-height: 300px;
+  overflow: hidden;
+}
+
+.sala__fundo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sala__veu {
+  position: absolute;
+  inset: 0;
+  background: var(--areia);
+  opacity: var(--veu);
+}
+
+.sala__conteudo {
+  position: relative;
+  z-index: 1;
+  padding: 0 var(--gut) clamp(3.5rem, 9vw, 6rem);
+}
+
+.sala__cab {
+  display: flex;
+  align-items: flex-end;
+  max-width: 1200px;
+  margin: -4.5rem auto clamp(1.4rem, 3vw, 2.4rem);
+}
+
+.sala__placa {
+  display: grid;
+  gap: 0.6rem;
+  width: 100%;
+  max-width: 31rem;
+  padding: clamp(1.4rem, 3vw, 2.2rem);
+  border-radius: var(--raio);
+  background: rgba(252, 250, 246, 0.94);
+  color: var(--tinta);
+  box-shadow: var(--sombra);
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .sala__placa {
+    background: rgba(252, 250, 246, 0.74);
+    -webkit-backdrop-filter: blur(18px) saturate(1.15);
+    backdrop-filter: blur(18px) saturate(1.15);
+  }
+}
+
+.sala__placa .titulo {
+  font-size: clamp(2.6rem, 1.6rem + 4.4vw, 5rem);
+}
+
+/* ---------- Salas com efeitos: fundo fixo, conteúdo passa por cima ---------- */
+
+html.fx .sala {
+  scroll-margin-top: calc(-1 * (var(--topo) + 12px));
+}
+
+html.fx .sala__fundo {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+}
+
+html.fx .sala__fundo img {
+  transform: scale(var(--zoom));
+  will-change: transform;
+}
+
+html.fx .sala__conteudo {
+  margin-top: -100vh;
+  margin-top: -100dvh;
+  padding-bottom: 34vh;
+}
+
+html.fx .sala__cab {
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-bottom: calc(clamp(1.6rem, 7vh, 4.5rem) + env(safe-area-inset-bottom));
+}
+
+/* ---------- Cartões de procedimento ---------- */
+
+.cartoes {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.6rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cartoes--quatro {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 235px), 1fr));
+}
+
+.cartoes--um {
+  max-width: 980px;
+}
+
+.cartao {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--raio);
+  background: var(--marfim);
+  overflow: hidden;
+  box-shadow: var(--sombra);
+}
+
+.cartao__img {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--areia);
+}
+
+.cartao__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.3s var(--ease);
+}
+
+.cartao__txt {
+  display: grid;
+  gap: 0.7rem;
+  align-content: start;
+  flex: 1;
+  padding: 1.3rem 1.4rem 1rem;
+}
+
+.cartao__txt h3 {
+  font-size: clamp(1.5rem, 1.3rem + 0.8vw, 1.9rem);
+}
+
+.cartao__txt > .link-seta {
+  margin-top: auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cartao:hover .cartao__img img {
+    transform: scale(1.06);
+  }
+}
+
+@media (min-width: 600px) {
+  .cartao__img {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+@media (min-width: 760px) {
+  .cartao--largo {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .cartao--largo .cartao__img {
+    flex: 0 0 42%;
+    aspect-ratio: auto;
+    min-height: 420px;
+  }
+
+  .cartao--largo .cartao__txt {
+    align-content: center;
+    gap: 1rem;
+    padding: clamp(1.8rem, 4vw, 3.2rem);
+  }
+
+  .cartao--largo .cartao__txt h3 {
+    font-size: clamp(2rem, 1.4rem + 2vw, 3rem);
+  }
+
+  .cartao--largo .cartao__txt > .link-seta,
+  .cartao--largo .cartao__txt > .botao {
+    margin-top: 0.4rem;
+    justify-self: start;
+  }
+}
+
+/* passos do curso */
+.passos {
+  display: grid;
+  gap: 0.2rem;
+  counter-reset: passo;
+  margin: 0.2rem 0 0.4rem;
+}
+
+.passos li {
+  counter-increment: passo;
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  column-gap: 0.4rem;
+  padding: 0.8rem 0;
+  border-top: 1px solid rgba(58, 38, 25, 0.12);
+}
+
+.passos li::before {
+  content: "0" counter(passo);
+  grid-row: span 2;
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--ouro);
+}
+
+.passos b {
+  font-weight: 500;
+}
+
+.passos span {
+  grid-column: 2;
+  font-size: 0.94em;
+  color: var(--moca);
+}
+
+/* ===================== Mapa lateral (telas largas) ===================== */
+
+.mapa {
+  display: none;
+}
+
+@media (min-width: 1100px) and (hover: hover) {
+  html.fx .mapa {
+    position: fixed;
+    right: 1.1rem;
+    top: 50%;
+    z-index: 40;
+    display: grid;
+    gap: 0.2rem;
+    transform: translateY(-50%) translateX(16px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s, transform 0.5s var(--ease);
+  }
+
+  html.fx .mapa.is-ligado {
+    opacity: 1;
+    transform: translateY(-50%);
+    pointer-events: auto;
+  }
+
+  .mapa a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.7rem;
+    height: 28px;
+  }
+
+  .mapa a::after {
+    content: "";
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--marfim);
+    box-shadow: 0 0 0 1px rgba(58, 38, 25, 0.55);
+    transition: transform 0.35s var(--mola), background-color 0.3s;
+  }
+
+  .mapa span {
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    background: var(--cafe);
+    color: var(--marfim);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(8px);
+    transition: opacity 0.3s, transform 0.35s var(--ease);
+  }
+
+  .mapa a:hover span,
+  .mapa a:focus-visible span,
+  .mapa a[aria-current="true"] span {
+    opacity: 1;
+    transform: none;
+  }
+
+  .mapa a[aria-current="true"]::after {
+    background: var(--cafe);
+    box-shadow: 0 0 0 1px var(--marfim), 0 0 0 2px var(--cafe);
+    transform: scale(1.25);
+  }
+}
+
+/* ===================== Contato ===================== */
+
+.contato {
+  position: relative;
+  z-index: 1;
+  background: var(--creme);
+}
+
+.contato__grade {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4.5rem);
+}
+
+.contato .titulo {
+  margin-top: 1rem;
+  font-size: clamp(2.2rem, 1.3rem + 4vw, 4.6rem);
+}
+
+.contato__lead {
+  max-width: 30rem;
+  margin-top: 1.2rem;
+  font-size: clamp(1.02rem, 0.96rem + 0.3vw, 1.18rem);
+}
+
+.contato__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.8rem;
+}
+
+.contato__cartoes {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.info {
+  display: grid;
+  gap: 0.5rem;
+  padding: clamp(1.4rem, 3vw, 2rem);
+  border-radius: var(--raio);
+  background: var(--marfim);
+  box-shadow: inset 0 0 0 1px rgba(58, 38, 25, 0.08);
+}
+
+.info__grande {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.1rem);
+  line-height: 1.15;
+}
+
+.info--shop {
+  background: var(--cafe);
+  color: var(--areia);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s;
+}
+
+.info--shop .sobre,
+.info--shop .link-seta {
+  color: var(--ouro-claro);
+}
+
+.info--shop .info__grande {
+  color: var(--marfim);
+}
+
+.info--shop:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sombra);
+}
+
+.info--shop:hover .link-seta::after {
+  transform: scaleX(1.7);
+}
+
+@media (min-width: 900px) {
+  .contato__grade {
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .contato__acoes .botao {
+    width: 100%;
+  }
+
+  .troca a,
+  .troca span {
+    padding: 0 0.7rem;
+  }
+}
+
+.rodape {
+  position: relative;
+  z-index: 1;
+}

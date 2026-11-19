@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Condessa Beauty — Studio &amp; Shop em Ipatinga</title>
+  <meta name="description" content="Condessa Beauty: escolha entre o Studio (cabelo, sobrancelhas, lábios, nails e cursos) e o Shop (maquiagens, perfumes e acessórios), em Ipatinga.">
+  <meta name="theme-color" content="#f7f1e8">
+  <!-- Prévia: fora dos buscadores enquanto preços e textos não forem confirmados. Remova esta linha no lançamento. -->
+  <meta name="robots" content="noindex, nofollow">
+  <!-- Decide a abertura antes da 1ª pintura: uma vez por sessão, nunca com âncora, aba oculta, movimento reduzido ou ?fx=0. ?intro=1 força. -->
+  <script>(function(){var d=document.documentElement;try{var q=new URLSearchParams(location.search);if(q.get("fx")==="0"||matchMedia("(prefers-reduced-motion: reduce)").matches){d.classList.add("no-fx");return}d.classList.add("fx");if(q.get("intro")!=="1"&&(sessionStorage.getItem("condessa-intro")||location.hash||document.hidden))return;d.classList.add("intro-active","intro-trava")}catch(e){}})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Jost:wght@300..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css?v=5">
+  <link rel="stylesheet" href="assets/css/home.css?v=5">
+</head>
+<body class="home">
+
+  <!-- Abertura: letras desenhadas → assinatura → portas que se abrem para a escolha -->
+  <div class="intro" id="intro" aria-hidden="true">
+    <div class="intro__porta intro__porta--a"></div>
+    <div class="intro__porta intro__porta--b"></div>
+    <div class="intro__fresta"></div>
+    <div class="intro__marca">
+      <svg class="intro__svg" viewBox="0 0 800 260" role="presentation" focusable="false">
+        <text class="intro__nome" x="407" y="138" text-anchor="middle"><tspan class="intro__l" style="--i:0">C</tspan><tspan class="intro__l" style="--i:1">O</tspan><tspan class="intro__l" style="--i:2">N</tspan><tspan class="intro__l" style="--i:3">D</tspan><tspan class="intro__l" style="--i:4">E</tspan><tspan class="intro__l" style="--i:5">S</tspan><tspan class="intro__l" style="--i:6">S</tspan><tspan class="intro__l" style="--i:7">A</tspan></text>
+        <line class="intro__fio" x1="330" y1="172" x2="470" y2="172" pathLength="1"></line>
+        <text class="intro__sub" x="412" y="214" text-anchor="middle">BEAUTY</text>
+      </svg>
+    </div>
+  </div>
+
+  <header class="home-topo">
+    <span class="marca" aria-hidden="true">
+      <span class="marca__nome">CONDESSA</span>
+      <span class="marca__sub">BEAUTY</span>
+    </span>
+  </header>
+
+  <main class="escolha" id="escolha">
+    <h1 class="so-leitor">Condessa Beauty — escolha entre o Studio e o Shop</h1>
+
+    <a class="porta porta--studio" href="studio.html" data-porta>
+      <span class="porta__img"><img src="assets/img/cena-recepcao.jpg" alt="" width="2688" height="1520" fetchpriority="high"></span>
+      <span class="porta__veu"></span>
+      <span class="porta__txt">
+        <span class="porta__rot">01 · Rua Jonas, 135</span>
+        <span class="porta__titulo">Studio</span>
+        <span class="porta__desc">Cabelo, olhar, lábios, nails e cursos. Role e entre no salão, sala por sala.</span>
+        <span class="porta__cta">Entrar no Studio</span>
+      </span>
+    </a>
+
+    <a class="porta porta--shop" href="shop.html" data-porta>
+      <span class="porta__img"><img src="assets/img/cena-shop.jpg" alt="" width="2688" height="1520"></span>
+      <span class="porta__veu"></span>
+      <span class="porta__txt">
+        <span class="porta__rot">02 · Rua Belo Horizonte, 273</span>
+        <span class="porta__titulo">Shop</span>
+        <span class="porta__desc">Maquiagens brasileiras, perfumes importados e acessórios para a sua rotina.</span>
+        <span class="porta__cta">Entrar no Shop</span>
+      </span>
+    </a>
+
+    <span class="selo" aria-hidden="true"><span>C</span></span>
+  </main>
+
+  <footer class="home-rodape">
+    <span>Ipatinga · MG</span>
+    <span class="home-rodape__links">
+      <a href="https://www.instagram.com/condessabeautystudio/" target="_blank" rel="noopener">@condessabeautystudio</a>
+      <a href="https://www.instagram.com/condessabshop/" target="_blank" rel="noopener">@condessabshop</a>
+    </span>
+  </footer>
+
+  <script src="assets/js/transicao.js?v=5" defer></script>
+  <script src="assets/js/home.js?v=5" defer></script>
+</body>
+</html>
